@@ -7,7 +7,6 @@
 - [REACT](#REACT)
 
 * [NPM](#NPM)
-
 * [궁금했던 것들](#Question-Mark)
 
 ---
@@ -702,40 +701,48 @@ console.log(kimSum()) // kimSum : 30
 
   - `function Person(){}` === `var Person = new Function();`
 
+![1](https://github.com/blackb0x0714/JS/blob/master/img/15-1.PNG)
+
 - **Person 함수를 생성할 때**
-  - `Person`객체와 `Person's prototype`객체가 생긴다.
 
-```javascript
-function Person(name, first, second) {
-  this.name = name
-  this.first = first
-  this.second = second
-}
-```
+- **`Person`객체와 `Person's prototype`객체가 생긴다.**
 
-- \*\* **`Person`객체가 생성된다.**
+  - **`Person`객체가 생성된다.**
 
-  - `Person.prototype === Person's prototype`
-  - 내부적으로 `prototype 프로퍼티`가 생성되고 `Person's prototype`객체를 가르킨다.
+    - `Person.prototype === Person's prototype`
+    - 내부적으로 `prototype 프로퍼티`가 생성되고 `Person's prototype`객체를 가르킨다.
 
-- **`Person's prototype`객체가 생긴다.**
+  - **`Person's prototype`객체가 생긴다.**
+    - 내부적으로 `constructor`프로퍼티가 생성되고 `Person`객체를 가르킨다.
 
-  - 내부적으로 `constructor`프로퍼티가 생성되고 `Person`객체를 가르킨다.
+![2](https://github.com/blackb0x0714/JS/blob/master/img/15-2.PNG)
 
-- **`Person.prototype.sum = function(){}`이 생성될 때**
+- **Person.prototype.sum = function(){}`이 생성될 때**
 
-  - `Person's prototype`객체 내부에 `sum`함수가 정의된다.
+  - **`Person's prototype`객체 내부에 `sum`함수가 정의된다.**
 
-- **생성자를 통해 객체를 만들 때**
+![3](https://github.com/blackb0x0714/JS/blob/master/img/15-3.PNG)
 
+- **생성자를 통해 객체를 만들 때-1**
   - `var kim = new Person('kim', 10, 20)
   - `kim`객체 안에 `__proto__`, `name`, `first`, `second` 프로퍼티가 생성된다.
   - `__proto__`는 자신을 생성한 `Person's prototype`객체를 가리킨다.
 
-- **출력할 때** -`console.log(kim.name)`
+![4](https://github.com/blackb0x0714/JS/blob/master/img/15-3.PNG)
 
+- **생성자를 통해 객체를 만들 때-2**
+  - `var lee = new Person('kim', 10, 10)
+  - `lee`객체 안에 `__proto__`, `name`, `first`, `second` 프로퍼티가 생성된다.
+  - `__proto__`는 자신을 생성한 `Person's prototype`객체를 가리킨다.
+
+![5](https://github.com/blackb0x0714/JS/blob/master/img/15-5.PNG)
+
+- **출력할 때**
+  - `console.log(kim.name)`
   - `kim` 객체에서 `name` 프로퍼티를 찾는다.
   - 만약에 없다면 `__proto`가 가리키고 있는 `Person's prototype`에서 `name`을 찾는다.
+
+![6](https://github.com/blackb0x0714/JS/blob/master/img/15-6.PNG)
 
 - **함수를 호출할 때**
   - `kim.sum()`
@@ -746,9 +753,230 @@ function Person(name, first, second) {
 
 ---
 
+## 16.1 생성자 함수를 통한 상속 : 소개
+
+- **목표**
+  - prototype 통한 상속
+  - 그러나 class를 통한 상속이 더 편하다.
+
+[Top](#JS)
+
+---
+
+## 16.2 생성자 함수를 통한 상속 : 부모 생성자 실행
+
+- **this에 집중**
+
+- **`Person.call(this, name, first, second)`은 부모를 호출했을 뿐 연결은 되지 않았다.**
+  - 아래 코드는 실행되지 않는다.
+
+```javascript
+function Person(name, first, second) {
+  this.name = name
+  this.first = first
+  this.second = second
+}
+Person.prototype.sum = function () {
+  return this.first + this.second
+}
+
+function PersonPlus(name, first, second, third) {
+  👉Person.call(this, name, first, second)
+  this.third = third
+}
+PersonPlus.prototype.avg = function () {
+  return (this.first + this.second + this.third) / 3
+}
+
+let kim = new PersonPlus('kim', 10, 20, 30)
+console.log(kim.sum())
+console.log(kim.avg())
+```
+
+[Top](#JS)
+
+---
+
+## 16.3 생성자 함수를 통한 상속 : 부모와 연결하기
+
+![1](https://github.com/blackb0x0714/JS/blob/master/img/16.3.PNG)
+
+- **현재 상황**
+
+  - `kim.sum()`를 호출했을 때 `PersonPlus's prototype`객체에 없기 때문에<br>`Person's prototype`객체의 `sum`에 연결해줘야 한다.
+  - 객체가 생성될때는 항상 `__proto__`가 생성이 되며 그 객체의 prototype을 가르킨다.
+
+- **2가지 방법**
+- prototype을 이용한 연결 : `__proto__`
+  - `__proto__`는 비표준이다.
+- `Object.create`를 이용한 연결 : 다음 강의에서 다룬다
+
+```javascript
+function Person(name, first, second) {
+  this.name = name
+  this.first = first
+  this.second = second
+}
+Person.prototype.sum = function () {
+  return this.first + this.second
+}
+
+function PersonPlus(name, first, second, third) {
+  Person.call(this, name, first, second)
+  this.third = third
+}
+👉PersonPlus.prototype.__proto__ = Person.prototype
+
+PersonPlus.prototype.avg = function () {
+  return (this.first + this.second + this.third) / 3
+}
+
+let kim = new PersonPlus('kim', 10, 20, 30)
+console.log(kim.sum()) // 60
+console.log(kim.avg()) // 20
+```
+
+[Top](#JS)
+
+---
+
+## 16.4 생성자 함수를 통한 상속 : constructor 속성은 무엇인가?
+
+![1](https://github.com/blackb0x0714/JS/blob/master/img/16.4.PNG)
+
+- **constructor의 기능**
+
+  - 어떠한 객체가 누구로부터 만들어졌는지
+  - 새로운 객체를 생성
+
+- **Object.create를 이용한 연결**
+  - 그러나 아래코드에는 에러가 있다.
+  - 👉이해를 더 해봐야겠다.
+
+```javascript
+function Person(name, first, second) {
+  this.name = name
+  this.first = first
+  this.second = second
+}
+Person.prototype.sum = function () {
+  return this.first + this.second
+}
+
+function PersonPlus(name, first, second, third) {
+  Person.call(this, name, first, second)
+  this.third = third
+}
+👉PersonPlus.prototype = Object.create(Person.prototype)
+
+PersonPlus.prototype.avg = function () {
+  return (this.first + this.second + this.third) / 3
+}
+
+let kim = new PersonPlus('kim', 10, 20, 30)
+console.log(kim.sum()) // 60
+console.log(kim.avg()) // 20
+console.log(kim.constructor) 👉/* ƒ Person(name, first, second) {
+  this.name = name
+  this.first = first
+  this.second = second
+} */
+```
+
+- **이해해보기**
+
+```javascript
+var d = new Date()
+Date.prototype.constructor === Date // true
+d.constructor // f Date() { [navtive code] }
+```
+
+[Top](#JS)
+
+---
+
+## 16.5 생성자 함수를 통한 상속 : constructor 속성 바로잡기
+
+- 👉**코드를 추가해 에러를 해결하는데 좀더 이해를 해봐야겠다.**
+
+- **결론**
+  - `__proto__`는 비표준이다.
+  - class 상속을 추천
+
+```javascript
+function Person(name, first, second) {
+  this.name = name
+  this.first = first
+  this.second = second
+}
+Person.prototype.sum = function () {
+  return this.first + this.second
+}
+
+function PersonPlus(name, first, second, third) {
+  Person.call(this, name, first, second)
+  this.third = third
+}
+PersonPlus.prototype = Object.create(Person.prototype)
+👉PersonPlus.prototype.constructor = PersonPlus
+
+PersonPlus.prototype.avg = function () {
+  return (this.first + this.second + this.third) / 3
+}
+
+let kim = new PersonPlus('kim', 10, 20, 30)
+console.log(kim.sum()) // 60
+console.log(kim.avg()) // 20
+console.log(kim.constructor) // 👉/* ƒ PersonPlus(name, first, second, third) {
+  Person.call(this, name, first, second)
+  this.third = third
+} */
+```
+
+[Top](#JS)
+
+---
+
 # Immutability
 
 - [생활코딩 Immutability 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBxNK38TqfBWk-QpEI7UkY8)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+
+- **immutability**
+
+  - 데이터의 원본이 훼손되는 것을 막는 것
+
+- **4개의 기본적인 작업**
+  - CRUD(Create, Read, Update, Delete)
+  - Create, Read이 더 중요하다.
+
+[Top](#JS)
+
+---
+
+## 2. 이름에 대한 불변함 : const vs var
+
+- **목표**
+
+  - 이름(변수)을 불변하게
+
+- **const(상수) 이름을 변경하려고 할 때**
+  - `TypeError : Assignment to constant variable.`
+
+[Top](#JS)
+
+---
+
+## 3..0 변수 할당 방식 비교
+
+- **목표**
+
+  - 값(value)을 불변하게
 
 [Top](#JS)
 
@@ -1472,9 +1700,73 @@ constructor(props) {
 
 ---
 
+## 17.1 컴포넌트 이벤트 만들기
+
+- **목표**
+
+  - 이벤트를 만드는 생산자가 되어보기
+  - `Subject` 컴포넌트안에 이벤트 생성
+  - App 컴포넌트의 mode가 'welcome'으로 바뀌게
+
+- **순서**
+  - `Subject` 컴포넌트안에 우리가 `onChangePage`라는 이벤트를 만들고 함수를 설치
+  - 그 이벤트가 발생되었을 때 `props`로 전달된 `onChangePage` 함수가 실행된다.
+
+```javascript
+// App.js
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      {/*생략*/}
+    }
+  }
+  render() {
+      {/*생략*/}
+    }
+    return (
+      <div className="App">
+        <Subject
+            👉onChangePage={function () {
+            👉this.setState({ mode: 'welcome' })
+          👉}.bind(this)}
+        ></Subject>
+      </div>
+    )
+  }
+}
+```
+
+```javascript
+class Subject extends Component {
+  render() {
+    return (
+      <header>
+        <h1>
+          <a
+            href="/"
+            👉onClick={function (e) {
+             👉e.preventDefault()
+             👉this.props.onChangePage()
+            }.bind(this)}
+          >
+            {this.props.title}
+          </a>
+        </h1>
+        {this.props.sub}
+      </header>
+    )
+  }
+}
+```
+
 [Top](#JS)
 
 ---
+
+## 17.2 컴포넌트 이벤트 만들기
+
+코드리뷰
 
 [Top](#JS)
 
