@@ -563,7 +563,7 @@ console.log(superObj.superVal) // super
 
 ## 13.3 Object.create()
 
-- ****proto**보다 더 좋은 방법이지만 수작업**
+- \***\*proto**보다 더 좋은 방법이지만 수작업\*\*
 
 - **새로운 객체를 생성**
 
@@ -595,7 +595,7 @@ console.log(superObj.superVal) // super
 
 ## 13.4 객체상속의 사용
 
-- ****proto**** 사용
+- \***\*proto\*\*** 사용
 
 ```javascript
 let kim = {
