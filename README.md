@@ -7,7 +7,7 @@
 - [JS-Immutability](#Immutability)
 - [Ajax](#Ajax)
 - [REACT](#REACT)
-- [React class와 function style coding](#React-class와-function-style-coding)
+- [React class와 function style coding](#React-class-function-style-coding)
 - [NPM](#NPM)
 - [궁금했던 것들](#Question-Mark)
 
