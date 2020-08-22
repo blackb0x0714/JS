@@ -2,12 +2,31 @@
 
 # JS
 
+- [CSS](#CSS)
 - [JS-OOP](#OOP)
 - [JS-Immutability](#Immutability)
 - [Ajax](#Ajax)
 - [REACT](#REACT)
 - [NPM](#NPM)
 - [궁금했던 것들](#Question-Mark)
+
+---
+
+# CSS
+
+- [생활코딩 CSS 수업](https://www.youtube.com/watch?v=ONcmkf07EuI&list=PLuHgQVnccGMDaVaBmkX0qfB45R_bYrV62)
+
+[Top](#JS)
+
+---
+
+## 레이아웃 - 인라인 vs 블랙레벨
+- html 엘리먼트들은 크게 두가지로 구분된다.
+  - `block element` : 화면 전체를 사용하는 태그
+  - `inline level element` : 화면의 일부를 차지하는 태그
+- `display` 속성
+
+[Top](#JS)
 
 ---
 
