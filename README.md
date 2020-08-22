@@ -7,6 +7,7 @@
 - [JS-Immutability](#Immutability)
 - [Ajax](#Ajax)
 - [REACT](#REACT)
+- [React class와 function style coding](#React-class와-function-style-coding)
 - [NPM](#NPM)
 - [궁금했던 것들](#Question-Mark)
 
@@ -2697,6 +2698,72 @@ class App extends Component {
 [Top](#JS)
 
 ---
+
+# React class과 function style coding
+
+- [생활코딩 React class & function style coding 수업](https://www.youtube.com/watch?v=iY_vmP-Q3Ak&list=PLuHgQVnccGMCEfBwnNGsJCQDiqSWI-edj)
+- [생활코딩 React class & function style coding 소스코드](https://github.com/egoing/react-function-vs-class-style)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **리액트에서 컴포넌트를 만드는 2가지 방법**
+  - Class 문법
+  - Function 문법
+    - `state`와 `life cycle API`를 사용할 수 없다.
+    - 'hook'을 이용해서 보완이 가능하다.
+
+[Top](#JS)
+
+---
+
+## 2. 수업의 목표
+- **목표**
+  - `Class`와 `Function`으로 비슷한 기능을 가진<br>컴포넌트의 내부를 비교
+
+- **개발환경 세팅**
+  - 리액트 설치
+  - `FuncComp`, `ClassComp` 컴포넌트 생성
+
+- **기본 비교**
+  - `function`은 자기 자신이 렌더(바로 리턴)
+  - `class`는 render 메소드 안에서 리턴
+
+```javascript
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div className="container">
+      <FuncComp></FuncComp>
+      <ClassComp></ClassComp>
+    </div> 
+  )
+}
+
+function FuncComp(){
+  return (
+    <div className="container">
+      <h2>function style component</h2>
+    </div>
+  )
+}
+
+class ClassComp extends React.Component{
+  render(){
+    return (
+      <div className="container">
+        <h2>class style component</h2>
+      </div>
+    )
+  }
+}
+
+export default App;
+```
 
 [Top](#JS)
 
