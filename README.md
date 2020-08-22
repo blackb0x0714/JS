@@ -2679,6 +2679,75 @@ class App extends Component {
 
 ---
 
+## 19.7. create 구현 : shouldComponentUpdate
+- **목표**
+  - `push`, `concat`을 사용했을 때의 차이점
+  - `newProps`, `newState` 를 통해서 비교
+
+- **`TOC` 컴포넌트에서 `shouldComponentUpdate` 함수를 통해 알수 있는 점**
+  - `render` 함수 이전에 `shouldComponentUpdate` 이 실행된다.
+  
+  - `shouldComponentUpdate`의 `return` 값이
+    - `true` : `render` 함수 실행 o
+    - `false` : `render` 함수 실행 x
+
+  - `shouldComponentUpdate`의 매개변수 : `newProps`, `newState`
+    - `newProps` : 새로운데이터, 바뀐 값
+    - `newSate` : 현재 값
+
+- **`push` 의 문제점**
+  - 기존의 `this.state.contents`의 원본을 바꿔버린다.
+  - 이전값과 이후값이 완전히 같아지게 된다.
+
+- **수정**
+  - `TOC` 컴포넌트로 들어오는 `props data` 값이 바뀌었을 때<br>
+render가 실행, 아니면 실행이 되지 않는다.
+  - 글을 썼을 때 이전 값과 현재 값이 다르기 때문에<br>
+  `true`가 리턴이 되면서 `return` 함수가 실행이 된다.
+
+```javascript
+// TOC.js
+
+class TOC extends Component {
+  👉shouldComponentUpdate(newProps, newState)
+  👉if(this.props.data === newProps.data){
+    👉return false;
+  }
+  👉return true;
+  render() {
+  }
+}
+```
+
+[Top](#JS)
+
+--- 
+ 
+## 19.8. create 구현 : immutable
+- **목표**
+  - 원본을 바꾸지 않고 `setState`에 값을 세팅
+
+- **`Array.from`**
+   - 배열 복제
+
+- **`Object.assign`**
+  - 객체 복제
+
+```javascript
+_ariticle = (
+  <CreateContent
+    onSubmit={function (_title, _desc) {
+      this.max_content_id = this.max_content_id + 1
+      var newContents = 👉Array.from(this.state.contents)
+      newContents.push({ id: this.max_content_id, title: _title, desc: _desc })
+      this.setState({
+        contents: newContents,
+      })
+    }.bind(this)}
+  ></CreateContent>
+)
+```
+
 [Top](#JS)
 
 ---
