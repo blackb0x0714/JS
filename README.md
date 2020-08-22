@@ -2505,6 +2505,122 @@ constructor(props) {
 
 ---
 
+## 19.1 create 구현 : 소개
+- **목표**
+
+  - `create`버튼을 누르면 `App` 컴포넌트의 `mode`가 `create`로 바뀐다.
+  - 읽기로 사용되는 `Content` 컴포넌트가 글을 추가할 때 사용되는 컴포넌트로 바뀐다.
+  - 폼형태로 제공되며 저장을 하면 `App` 컴포넌트 State `contetns` 목록에<br>새로운 정보(`desc`, `id`, `title`)가 객체로 담겨서 추가된다.
+  - 그에 따라 `TOC`에 표시될 내용이 늘어난다.
+
+[Top](#JS)
+
+---
+
+## 19.2 create 구현 : mode 변경 기능
+- **목표**
+  - `<TOC>`, `<Content>` 사이에<br>`create`, `update`, `delete` 모드로 진입하는 버튼을 만든다.
+
+- **`Control` 컴포넌트 생성**
+- `Control` 컴포넌트의 `onChangeMode` 함수의 인자 `create`, `update`, `delete`는<br>`App` 컴포넌트 함수의 매개변수 `_mode`로 전달이 된다.
+
+```javascript
+// App.js
+
+<Control
+  onChangeMode={function (👉_mode) {
+    this.setState({ mode: _mode })
+  }.bind(this)}
+></Control>
+```
+```javascript
+// Control.js
+<a
+  onClick={function (e) {
+    e.preventDefault()
+    this.props.onChangeMode(👉'update')
+  }.bind(this)}
+  href="/update">
+  Update
+</a>
+```
+
+[Top](#JS)
+
+---
+
+## 19.3 create 구현 : mode 전환 기능
+- **목표**
+  - `state.mode`의 값에 따라서 `content` 영역이 교체되는 기능 구현
+  - `create`을 클릭했을 때<br>
+`<Content>`를 읽기(read)에서 사용될 `<ReadContent>` 컴포넌트와<br>
+쓰기(create)에서 사용될 `<CreateContent>` 컴포넌트로 변경
+
+- **`ReadContent`, `CreateContent` 컴포넌트 생성**
+  - 기존 `Content`는 `ReadContent`로 변경
+
+```javascript
+// App.js
+
+import ReadContent from './components/ReadContent'
+import CreateContent from 
+
+class App extends Component {
+  
+  }
+  render() {
+    console.log('App render')
+    var _title,
+      _desc,
+      👉_article = null
+    if (this.state.mode === 'welcome') {
+      _title = this.state.welcome.title
+      _desc = this.state.welcome.desc
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+    } else if (this.state.mode === 'read') {
+      var i = 0
+      while (i < this.state.contents.length) {
+        var data = this.state.contents[i]
+        if (data.id === this.state.selected_content_id) {
+          _title = data.title
+          _desc = data.desc
+          break
+        }
+        i = i + 1
+      }
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+    } 👉else if (this.state.mode === 'create') {
+      _article = <CreateContent></CreateContent>
+    }
+    return (
+      <div className="App">
+        👉{_article}
+      </div>
+    )
+  }
+}
+```
+```javascript
+// CreateContent.js
+
+import React, { Component } from 'react';
+
+class CreateContent extends Component{
+    render(){
+      return (
+        <article>
+            <h2>Create</h2>
+            <form>
+
+            </form>
+        </article>
+      );
+    }
+  }
+
+export default CreateContent; 
+```
+
 [Top](#JS)
 
 ---
