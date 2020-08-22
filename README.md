@@ -1149,7 +1149,7 @@ console.log(o1) // Error
 ---
 
 ## 7. const vs object freeze
-![7](https://github.com/blackb0x0714/JS/blob/master/img/immutability-7.PNG)
+![7](https://github.com/blackb0x0714/JS/blob/master/img/Immutability-7.PNG)
 - **차이점**
 
   - `const`는 `이름`이 가리키는 값을 다른 것으로 바꾸지 못하게 한다.
