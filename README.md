@@ -1553,7 +1553,7 @@ function(response){
 # REACT
 
 - [생활코딩 리액트 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCRv6f8H9K5Xwsdyg4sFSdi)
-- [생활코딩 리액트 소스코드)(https://github.com/egoing/react-tutorial-example)
+- [생활코딩 리액트 소스코드](https://github.com/egoing/react-tutorial-example)
 
 [Top](#JS)
 
