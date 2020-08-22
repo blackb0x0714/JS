@@ -1742,6 +1742,7 @@ export default App
 
 ```javascript
 // pure.html
+
 <html>
   <body>
     👉
@@ -1755,6 +1756,7 @@ export default App
 
 ```javascript
 // App.js
+
 import React, { Component } from 'react'
 import './App.css'
 
@@ -1986,53 +1988,27 @@ class App extends Component {
 
 - **props의 여러개의 값을 다룰때 사용**
 
-  - 참고 : contents는 props
+  - `App` 컴포넌트는 `TOC` 컴포넌트의 부모이다.
+  - `contents`는 `props`
 
 ```javascript
 // App.js
 class App extends Component {
-  👉// 부모 : App
-  constructor(props) {
-    super(props)
-    this.state = {
-      👉// contens는 props
-      contens: [
-        { id: 1, title: 'HTML', desc: 'HTML is for information' },
-        { id: 2, title: 'CSS', desc: 'CSS is for design' },
-        { id: 3, title: 'JavaScript', desc: 'JavaScript is for interactive' },
-      ],
-    }
-  }
-  render() {
     return (
       <div className="App">
-        👉// 위에 정의한 state의 contents를 사용
-        👉// TOC는 data를 사용
         <TOC 👉data={this.state.contens}></TOC>
       </div>
     )
-  }
 }
+```
 
-
+```javascript
 //TOC.js
 class TOC extends Component {
-  👉// 자식 : TOC
   render() {
-    var lists = []
-    👉// App Component의 data를 사용
-    var data = this.props.data
-    var i = 0
-    while (i < data.length) {
-      lists.push(
-        <li key={data[i].id}>
+        <li 👉key={data[i].id}>
           <a href={'/content/' + data[i].id}>{data[i].title}</a>
         </li>
-      )
-      i = i + 1
-    }
-    return (
-      // 중요하지 않아서 생략
   }
 }
 
@@ -2046,11 +2022,11 @@ class TOC extends Component {
 
 - **목표**
 
-  - Content의 mode가 'welcome'이면 ~ 출력
-  - 'read'이면 ~출력
-  - 그 외는 아무것도 출력이 안된다. Content의 attribute인 title에 아무값도 들어있지 않기 때문
+  - `Content` 컴포넌트의 `mode`가 `'welcome'`이면 ~ 출력, `'read'`이면 ~ 출력
+  - 그 외는 아무것도 출력이 안된다.
+   - `Content` 컴포넌트의 `attribute`인 `title`에 값이 없기 때문
 
-- **props나 state의 값이 바뀔 때 render 함수 하위에 있는 컴포넌트들도 다시 그려진다.**
+- **`props`나 `state`의 값이 바뀔 때 `render` 함수 하위에 있는 컴포넌트들도 다시 그려진다.**
 
   - App -> Subject -> TOC -> Content
 
@@ -2063,7 +2039,7 @@ class App extends Component {
   👉constructor(props) {
     super(props)
     this.state = {
-      👉mode: 'mode',
+      👉mode: 'read',
       👉welcome: { title: 'Welcome', desc: 'Hello, React!!' },
       contents: [
         { id: 1, title: 'HTML', desc: 'HTML is for information' },
@@ -2082,14 +2058,15 @@ class App extends Component {
       _title = this.state.contents[0].title
       _desc = this.state.contents[0].desc
     }
-    👉return (
+    return (
       <div className="App">
         <Content title=👉{_title} desc=👉{_desc}></Content>
       </div>
     )
   }
 }
-
+```
+```javascript
 // Content.js
 class Content extends Component {
   render() {
@@ -2111,40 +2088,32 @@ class Content extends Component {
 
 - **목표**
 
-  - Subject의 anchor 태그를 클릭했을 때 어떤 자바스크립트가 실행될 수 있게 하기
+  - `Subject` 컴포넌트의 `anchor` 태그를 클릭했을 때<br>
+  어떤 자바스크립트가 실행될 수 있게 하기
 
 - **문제**
 
   - 이벤트(onClick)가 발생할 때 새로고침이 되버린다.
+  
+- **해결**
+- 이벤트(onClick 함수)의 매개변수로 객체 e를 넣고 `e.preventDefault()`를 실행하면 된다.  
 
 - **디버거 사용**
 
-  - debugger 코드를 만나면 실행이 정지
-  - 개발자 도구의 Sources에서 다양한 정보를 볼 수 있다.
-
-- **해결**
-- 이벤트(onClick 함수)의 파라미터로 객체 e를 넣고 `e.preventDefault()`를 실행하면 된다.
+  - `debugger` 코드를 만나면 실행이 정지
+  - 개발자 도구의 `Sources` 탭에서 다양한 정보를 볼 수 있다.
 
 ```javascript
 // App.js
 
 class App extends Component {
-  // 생략
-  }
-  render() {
-    // 생략
-    }
     return (
       <div className="App">
-        {/* <Subject
-          title={this.state.subject.title}
-          sub={this.state.subject.sub}
-        ></Subject> */}
-        <header>
+        👉<header>
           <h1>
             <a
               href="/"
-              👉onClick={function (e) {
+              onClick={function (e) {
                 e.preventDefault()
               }}
             >
@@ -2167,17 +2136,19 @@ class App extends Component {
 
 - **목표**
 
-  - header의 anchor태그를 클릭했을 때 App 컴포넌트 State의 mode 값을 'welcome'으로 변경하기
+  - `header` 태그의 `anchor` 태그를 클릭했을 때<br>
+  `App` 컴포넌트 `State`의 `mode` 값을 `'welcome'`으로 변경하기
 
 - **`this.state.mode = 'welcome'` 코드의 2가지의 문제**
 
-  - 이벤트가 실행되는 함수안의 this는 아무값도 가리키고 있지 않다.
-  - 리액트는 state의 값이 바뀐지 모른다.
+  - 이벤트가 실행되는 함수안의 `this`는 아무값도 가리키고 있지 않다.
+  - 리액트는 `state`의 값이 바뀐지 모른다.
 
 - **해결**
 
-  - 이벤트함수가 끝나는 지점에 .bind(this)를 붙여주면 this는 자신의 컴포넌트를 가리키게 된다.
-  - 바뀐 state값을 알도록 `this.setState({mode: 'welcome'})`으로 바꾸어준다.
+  - 이벤트함수가 끝나는 지점에 `.bind(this)`를 붙여주면<br>
+  `this`는 자신의 컴포넌트를 가리키게 된다.
+  - 바뀐 `state`값을 알도록 `this.setState({mode: 'welcome'})`으로 바꾸어준다.
 
 - **자세한 설명**
   - 강의 16.4 이벤트 bind 함수 이해하기
@@ -2187,17 +2158,7 @@ class App extends Component {
 // App.js
 
 class App extends Component {
-  // 생략
-  }
-  render() {
-    // 생략
-    }
     return (
-      <div className="App">
-        {/* <Subject
-          title={this.state.subject.title}
-          sub={this.state.subject.sub}
-        ></Subject> */}
         <header>
           <h1>
             <a
@@ -2225,14 +2186,14 @@ class App extends Component {
 ## 16.4 이벤트 bind 함수 이해하기
 
 - **문제**
-  - render 함수안의 this는 render 함수가 속해있는 컴포넌트를 가르킨다.
-  - 함수 안의 this는 아무것도 가리키고 있지 않다 = undefined
+  - `render` 함수안의 `this`는 `render` 함수가 속해있는 컴포넌트를 가르킨다.
+  - 함수 안의 `this`는 아무것도 가리키고 있지 않다. == `undefined`
 
 - **그래서**
-  - this의 값을 강제로 주입하고 싶다.
+  - `this`의 값을 강제로 주입하고 싶다.
 
 - **목표**
-  - bindTest 함수의 this가 obj 객체를 가리키게 하고 싶다.
+  - `bindTest` 함수의 `this`가 `obj` 객체를 가리키게 하고 싶다.
 
 ```javascript
 var obj = {name: 'egoing'};
@@ -2245,11 +2206,13 @@ var bindTest2 = 👉bindTest.bind(obj);
 bindTest2(); // 'egoing'이 출력되며 새로운 함수가 만들어 진다.
 ```
 
+[Top](#JS)
+
 ---
 
 ## 16.5 이벤트 setState 함수 이해하기
 
-- **생성자 constructor 함수에서는 state값을 다음과 같이 변경해도 되지만**
+- **생성자 `constructor` 함수에서는 `state`값을 다음과 같이 변경해도 되지만**
 
 ```javascript
 constructor(props) {
@@ -2259,7 +2222,8 @@ constructor(props) {
    }
 ```
 
-- **컴포넌트 생성이 끝난 후 동적으로 state값을 변경하고 싶을 때는<br>`this.state.mode = 'welcome` 이 아닌 `this.setState({mode: 'welcome'})`로 변경해야 한다.**
+- **컴포넌트 생성이 끝난 후 동적으로 state값을 변경하고 싶을 때는<br>
+`this.state.mode = 'welcome` 이 아닌 `this.setState({mode: 'welcome'})`로 변경해야 한다.**
 
 - **이유**
   - 리액트가 state 값의 변화를 인지못하여 렌더링을 하지 못한다.
@@ -2274,24 +2238,16 @@ constructor(props) {
 
   - 이벤트를 만드는 생산자가 되어보기
   - `Subject` 컴포넌트안에 이벤트 생성
-  - App 컴포넌트의 mode가 'welcome'으로 바뀌게
+  - `App` 컴포넌트의 `mode`가 `'welcome'`으로 바뀌게
 
 - **순서**
-  - `Subject` 컴포넌트안에 우리가 `onChangePage`라는 이벤트를 만들고 함수를 설치
+  - `Subject` 컴포넌트 안에 우리가 `onChangePage`라는 이벤트를 만들고 함수를 설치
   - 그 이벤트가 발생되었을 때 `props`로 전달된 `onChangePage` 함수가 실행된다.
 
 ```javascript
 // App.js
+
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      {/*생략*/}
-    }
-  }
-  render() {
-      {/*생략*/}
-    }
     return (
       <div className="App">
         <Subject
@@ -2301,12 +2257,12 @@ class App extends Component {
         ></Subject>
       </div>
     )
-  }
 }
 ```
 
 ```javascript
 // Subject.js
+
 class Subject extends Component {
   render() {
     return (
@@ -2336,39 +2292,41 @@ class Subject extends Component {
 ## 17.2 컴포넌트 이벤트 만들기
 - **목표**
 
-  - `<TOC>`의 anchor 태그를 클릭했을 때 `mode`를 `read`로 바꿔주기
+  - `<TOC>`의 `anchor` 태그를 클릭했을 때 `mode`를 `read`로 바꿔주기
   
 ```javascript
 // App.js
+
 return (
-      <div className="App">
-        <TOC
-          👉onChangePage={function () {
-            this.setState({
-              mode: 'read',
-            })
-          }.bind(this)}
-          data={this.state.contents}
-        ></TOC>
-      </div>
-    )
+    <div className="App">
+      <TOC
+        onChangePage={function () {
+          this.setState({
+            👉mode: 'read'
+          })
+        }.bind(this)}
+        data={this.state.contents}
+      ></TOC>
+    </div>
+  )
 ```
 
 ```javascript
 // TOC.js
+
 lists.push(
-        <li key={data[i].id}>
-          <a
-            href={'/content/' + data[i].id}
-            👉onClick={function (e) {
-              e.preventDefault()
-              this.props.onChangePage()
-            }.bind(this)}
-          >
-            {data[i].title}
-          </a>
-        </li>
-      )
+    <li key={data[i].id}>
+      <a
+        href={'/content/' + data[i].id}
+        onClick={function (e) {
+          e.preventDefault()
+          👉this.props.onChangePage()
+        }.bind(this)}
+      >{data[i].title}
+      </a>
+      
+    </li>
+  )
 ```
 
 [Top](#JS)
@@ -2377,14 +2335,16 @@ lists.push(
 
 ## 17.3.
 - **목표**
-  - `List`를 클릭하면 본문이 보일 수 있게
-  - `State`의 `selected_id`에 맞는 내용을 표시
+  - `list`를 클릭하면 본문이 보일 수 있게
+  - `state`의 `selected_id`에 맞는 내용을 표시
 
-- **이벤트 함수는 `target`속성을 가지는데 그 이벤트가 발생한 태그를 가리킨다.**
+- **이벤트 함수는 `target`속성을 가지는데<br>
+그 이벤트가 발생한 태그를 가리킨다.**
   - ex) `<a onClick={function(){}}></a>
   - 디버깅을 통해 개발자 도구에서 확인 가능
 
-- **`data-id={data[i].id}`의 값은 `id: "2"`이고, 개발자도구 `Sources`의 `dataset`에서 볼 수 있다.**
+- **`data-id={data[i].id}`의 값은 `id: "2"`이고<br>
+개발자도구 `Sources`의 `dataset`에서 볼 수 있다.**
 
 - **정리**
 
@@ -2393,25 +2353,10 @@ lists.push(
 constructor(props) {
     super(props)
     this.state = {
-      mode: 'read',
-      👉selected_content_id: 2,
-      subject: { title: 'WEB', sub: 'World Wide Web!' },
-      welcome: { title: 'Welcome', desc: 'Hello, React!!' },
-      contents: [
-        { id: 1, title: 'HTML', desc: 'HTML is for information' },
-        { id: 2, title: 'CSS', desc: 'CSS is for design' },
-        { id: 3, title: 'JavaScript', desc: 'JavaScript is for interactive' },
-      ],
+      👉selected_content_id: 2
     }
   }
   render() {
-    console.log('App render')
-    var _title,
-      _desc = null
-    if (this.state.mode === 'welcome') {
-      _title = this.state.welcome.title
-      _desc = this.state.welcome.desc
-    } else if (this.state.mode === 'read') {
       👉var i = 0
       while (i < this.state.contents.length) {
         var data = this.state.contents[i]
@@ -2425,13 +2370,6 @@ constructor(props) {
     }
     return (
       <div className="App">
-        <Subject
-          title={this.state.subject.title}
-          sub={this.state.subject.sub}
-          onChangePage={function () {
-            this.setState({ mode: 'welcome' })
-          }.bind(this)}
-        ></Subject>
         <TOC
           👉onChangePage={function (id) {
             this.setState({
@@ -2441,7 +2379,6 @@ constructor(props) {
           }.bind(this)}
           data={this.state.contents}
         ></TOC>
-        <Content title={_title} desc={_desc}></Content>
       </div>
     )
   }
@@ -2450,12 +2387,14 @@ constructor(props) {
 
 - **1. 속성을 이용하는 방법(현재사용코드)**
 
-  - TOP.js의 onClick의 속성을 이벤트를 실행시킬 때<br>
+  - `TOP` 컴포넌트의 `onClick`의 속성을 이벤트를 실행시킬 때<br>
   `e.target.dataset.id`을 통해서 값을 추출했기 때문에<br>
   `data-id` 값이 바뀌면 `e.target.dataset.id` 값도 바뀐다.<br>
   ex) `data-AA` -> `e.target.dataset.AA`
+  
 ```javascript
 // TOC.js
+
 <li key={data[i].id}>
   <a 
     href={"/content/"+data[i].id}
@@ -2466,7 +2405,7 @@ constructor(props) {
       👉this.props.onChangePage(e.target.dataset.id);
     }.bind(this)}
   >{data[i].title}</a>
-</li>);
+</li>)
 ```
 
 - **2. 속성을 이용하지 않는 방법**
@@ -2475,14 +2414,15 @@ constructor(props) {
   `bind`는 `onClick` 함수의 두번째 인자로 들어온 인자를<br>
   그 함수의 첫번째 매개변수의 값으로 넣어준다.<br>
   기존에 있던 값은 뒤로 밀린다. ex) `function(-, e){}
+  
 ```javascript
 <li key={data[i].id}>
   <a
     href={'/content/' + data[i].id}
-    onClick={function (👉e) {
+    onClick={function (e👉) {
       e.preventDefault()
       this.props.onChangePage(👉id)
-    }.bind(👉this)}
+    }.bind(this👉)}
   >{data[i].title}
   </a>
 </li>
@@ -2510,7 +2450,8 @@ constructor(props) {
 
   - `create`버튼을 누르면 `App` 컴포넌트의 `mode`가 `create`로 바뀐다.
   - 읽기로 사용되는 `Content` 컴포넌트가 글을 추가할 때 사용되는 컴포넌트로 바뀐다.
-  - 폼형태로 제공되며 저장을 하면 `App` 컴포넌트 State `contetns` 목록에<br>새로운 정보(`desc`, `id`, `title`)가 객체로 담겨서 추가된다.
+  - 폼형태로 제공되며 저장을 하면 `App` 컴포넌트 State `contetns` 목록에<br>
+  새로운 정보(`desc`, `id`, `title`)가 객체로 담겨서 추가된다.
   - 그에 따라 `TOC`에 표시될 내용이 늘어난다.
 
 [Top](#JS)
@@ -2522,7 +2463,8 @@ constructor(props) {
   - `<TOC>`, `<Content>` 사이에<br>`create`, `update`, `delete` 모드로 진입하는 버튼을 만든다.
 
 - **`Control` 컴포넌트 생성**
-- `Control` 컴포넌트의 `onChangeMode` 함수의 인자 `create`, `update`, `delete`는<br>`App` 컴포넌트 함수의 매개변수 `_mode`로 전달이 된다.
+- `Control` 컴포넌트의 `onChangeMode` 함수의 인자 `create`, `update`, `delete`는<br>
+`App` 컴포넌트 함수의 매개변수 `_mode`로 전달이 된다.
 
 ```javascript
 // App.js
@@ -2566,29 +2508,11 @@ import ReadContent from './components/ReadContent'
 import CreateContent from 
 
 class App extends Component {
-  
-  }
   render() {
-    console.log('App render')
     var _title,
       _desc,
       👉_article = null
-    if (this.state.mode === 'welcome') {
-      _title = this.state.welcome.title
-      _desc = this.state.welcome.desc
-      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
-    } else if (this.state.mode === 'read') {
-      var i = 0
-      while (i < this.state.contents.length) {
-        var data = this.state.contents[i]
-        if (data.id === this.state.selected_content_id) {
-          _title = data.title
-          _desc = data.desc
-          break
-        }
-        i = i + 1
-      }
-      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+   
     } 👉else if (this.state.mode === 'create') {
       _article = <CreateContent></CreateContent>
     }
@@ -2597,7 +2521,6 @@ class App extends Component {
         👉{_article}
       </div>
     )
-  }
 }
 ```
 ```javascript
@@ -2624,6 +2547,132 @@ export default CreateContent;
 [Top](#JS)
 
 ---
+
+## 19.4. create 구현 : form
+- **목표**
+  - 글을 추가하는 기능인 `form`을 완성
+
+- **`onSubmit`은 `form`태그의 고유 기능**
+
+```javascript
+// App.js
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      👉mode:'create',
+      ]
+    }
+  }
+```
+```javascript
+// CreateContent.js
+
+render(){
+    console.log('Content render');
+    return (
+      <article>
+          <h2>Create</h2>
+          👉<form action="/create_process" method="post"
+            onSubmit={function(e){
+              e.preventDefault();
+              alert('Submit!!!!!');
+            }.bind(this)}
+          >
+            <p><input type="text" name="title" placeholder="title"></input></p>
+            <p>
+              <textarea name="desc" placeholder="description"></textarea>
+            </p>
+            <p>
+              <input type="submit"></input>
+            </p>
+          👉</form>
+      </article>
+    );
+  }
+```
+
+[Top](#JS)
+
+---
+
+## 19.5 create 구현 : onSubmit 이벤트
+- **목표**
+
+  - `onSubmit` 이벤트 생성
+  - 생성된  `_title` 과 `_desc`는 어떻게 가져올 것인가
+  - `CreateContent`에 이벤트로 설치된 함수를 실행
+  - `e.target.title.value` == `"React"(Create의 타이틀에서 입력한 값)`<br>
+  - 찾는 방법은 개발자 도구에서<br>
+`e -> target(form) -> title(input) -> value("React")`
+
+```javascript
+// App.js
+
+render() {
+      👉_article = <CreateContent onSubmit={function(_title, _desc){
+        // add content to this.state.contents
+      }.bind(this)}></CreateContent>
+    }
+```
+```javascript
+<form
+  action="/create_process"
+  method="post"
+  onSubmit={function (e) {
+    e.preventDefault()
+    👉this.props.onSubmit(e.target.title.value, e.target.desc.value)
+    alert('Submit!!!!!')
+  }.bind(this)}
+></form>
+```
+
+[Top](#JS)
+
+---
+
+## 19.6 create 구현 : contents 변경
+- **목표**
+  - `App` 컴포넌트의 `state`의 `contents` 끝에다가 사용자가 입력한 정보를 추가
+  - 그에 따라 글 목록도 자동 추가
+
+- **`this.max_content_id =3`**
+  - 데이터를 추가할때 아이디값을 알려주는 사용하는 정보일 뿐<br>
+  UI에 영향을 주지 않기 때문에 `state` 값에 넣지 않는다.
+
+- **`setState`**
+  - `State` 값을 변경할 때 주의
+
+- **`push` vs `concat`**
+  - `state`에는 원본을 보존하고 복제한 데이터를 사용하는게 성능에 좋다.
+
+```javascript
+// App.js
+class App extends Component {
+    constructor(props){
+      super(props);
+      👉this.max_content_id = 3;
+      this.state = {
+
+      }
+    }
+    render() {
+      } else  if(this.state.mode === 'create'){
+        _article = <CreateContent onSubmit={function(_title, _desc){
+          // add content to this.state.contents
+          👉this.max_content_id = this.max_content_id+1;
+          // this.state.contents.push(
+          //   {id:this.max_content_id, title:_title, desc:_desc}
+          // );
+          👉var _contents = this.state.contents.concat(
+            {id:this.max_content_id, title:_title, desc:_desc}
+          )
+          👉this.setState({
+            contents:_contents
+          });
+      }
+```
 
 [Top](#JS)
 
