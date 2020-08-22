@@ -2699,7 +2699,7 @@ class App extends Component {
 
 ---
 
-# React class과 function style coding
+# React class function style coding
 
 - [생활코딩 React class & function style coding 수업](https://www.youtube.com/watch?v=iY_vmP-Q3Ak&list=PLuHgQVnccGMCEfBwnNGsJCQDiqSWI-edj)
 - [생활코딩 React class & function style coding 소스코드](https://github.com/egoing/react-function-vs-class-style)
