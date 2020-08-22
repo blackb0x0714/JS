@@ -1353,18 +1353,18 @@ function(response){
 ```html
 <ol>
   <li>
-    <a onclick="fetchPage('html')">HTML</a>
+    👉<a onclick="fetchPage('html')">HTML</a>
   </li>
   <li>
-    <a onclick="fetchPage('css')">CSS</a>
+    👉<a onclick="fetchPage('css')">CSS</a>
   </li>
   <li>
-    <a onclick="fetchPage('javasciprt')">JS</a>
+    👉<a onclick="fetchPage('javasciprt')">JS</a>
   </li>
 </ol>
 <article></article>
 <script>
-  function fetchPage(name) {
+  👉function fetchPage(name) {
     fetch(name).then(function (response) {
       response.text().then(function (text) {
         document.querySelector('article').innerHTML = text
@@ -1373,6 +1373,159 @@ function(response){
   }
 </script>
 ```
+
+[Top](#JS)
+
+---
+
+## 7.1. 초기 페이지 (1/2)
+- **Ajax를 적용했을 때 여러가지 문제점들**
+  - 링크의 순수한 모양으로 만들고 싶다.
+  - 클릭했을 때 해당 페이지의 url이 나오게 하고 싶다.
+
+- **해결**
+  - 해시(Hash) : 페이지의 특정 부분을 사용자에게 접근하게 하고 싶을 때 사용<br>ex) 북마크 `#three`
+  - 크롤링 때문에 현재는 많이 사용되지 않는다.
+  - `location.hash == #three`
+  - `location.hash.substr(1) == three`
+
+```html
+<!-- url : localhost:3000/hash.html#three -->
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <a href="👉#three">three</a>
+    <p>One</p>
+    <p>Two</p>
+    <p id="three">Three</p>
+  </body>
+</html>
+
+<script>
+  if (location.hash) {
+    console.log(👉location.hash.substr(1))
+  } else {
+  }
+</script>
+```
+
+[Top](#JS)
+
+---
+
+## 7.2 초기 페이지 (2/2)
+```html
+<body>
+  <ol>
+    <li>
+      <a href="👉#!html" onclick="fetchPage('html')">HTML</a>
+    </li>
+  </ol>
+  <article></article>
+  <script>
+    👉if (location.has) {
+      fetchPage(location.hash.substr(2))
+    } else {
+      fetchPage('welcome')
+    }
+  </script>
+</body>
+```
+
+[Top](#JS)
+
+---
+
+## 8.1. 글목록 (1/2)
+
+- **데이터와 로직을 분리하는 이유**
+  - 사용자들이 이용할 때 사고를 방지
+  - 컨텐츠를 어디에 어떻게 입력을 해야 하는가
+```html
+// list
+<li>
+        <a href="#!html" onclick="fetchPage('html')">HTML</a>
+      </li>
+      <li>
+        <a href="#!css" onclick="fetchPage('css')">CSS</a>
+      </li>
+      <li>
+        <a href="#!javascript" onclick="fetchPage('javasciprt')">JS</a>
+      </li>
+```
+
+```html
+// index.html
+<ol 👉id="nav"></ol>
+
+<script>
+  fetch(list).then(function (response) {
+    response.text().then(function (text) {
+      document.querySelector('👉#nav').innerHTML = text
+    })
+  })
+</script>
+```
+
+[Top](#JS)
+
+---
+
+## 8.1. 글목록 (2/2)
+- **list파일에 html, css, javascript를 배열로 읽어올수 있게 하기**
+```html
+<!-- list 파일 -->
+
+👉html,css,javascript
+```
+
+```html
+<script>
+  var items = text.split(',')
+  var i = 0
+  var tags = ''
+  while (i < items.length) {
+    var item = items[i]
+    item = item.trim()
+    var tag =
+      '<li><a href="#!' +
+      item +
+      '" onclick="fetchPage(\'' +
+      item +
+      '\')">' +
+      item +
+      '</a></li>'
+    tags = tags + tag
+    i = i + 1
+  }
+  document.querySelector('#nav').innerHTML = tags
+</script>
+```
+
+[Top](#JS)
+
+---
+
+## 9. fetch API polyfill
+- **호환성의 문제**
+  - [호환성 확인 사이트](https://caniuse.com)
+
+- **`fetch API polyfill`**
+  - 익스플로어 10 이상에서 `fetch`를 사용할 수 있다.
+  - 호환성의 확보
+
+[Top](#JS)
+
+---
+
+## 10. 수업을 마치며
+- **공부할만한 주제**
+  - XML
+  - JSON
+  - SPA(Single Page Application)
+  - `PJAX(pushState + ajax)` : 검색엔진에 반영이 되면서 ajax가 가능
+  - Progressive Web Apps : online + offline
 
 [Top](#JS)
 
