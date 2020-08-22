@@ -4,10 +4,10 @@
 
 - [JS-OOP](#OOP)
 - [JS-Immutability](#Immutability)
+- [Ajax](#Ajax)
 - [REACT](#REACT)
-
-* [NPM](#NPM)
-* [궁금했던 것들](#Question-Mark)
+- [NPM](#NPM)
+- [궁금했던 것들](#Question-Mark)
 
 ---
 
@@ -533,8 +533,11 @@ console.log(kim.sum()) // 30
 ## 13.2 **proto**
 
 - **목표**
-
   - prototype object로 상속 구현(수작업)
+  
+- **prototype ojbect 상속 2가지 방법**
+  - `__proto__`
+  - `Object.create()`
 
 - **상속구현**
 
@@ -562,7 +565,7 @@ console.log(superObj.superVal) // super
 
 ## 13.3 Object.create()
 
-- \***\*proto**보다 더 좋은 방법이지만 수작업\*\*
+- **`_proto__`보다는 더 좋은 방법**
 
 - **새로운 객체를 생성**
 
@@ -594,7 +597,7 @@ console.log(superObj.superVal) // super
 
 ## 13.4 객체상속의 사용
 
-- \***\*proto\*\*** 사용
+- **`__proto__` 사용**
 
 ```javascript
 let kim = {
@@ -613,12 +616,12 @@ var lee = {
     return (this.first + this.second) / 2
   },
 }
-lee.__proto__ = kim
+👉lee.__proto__ = kim
 console.log(lee.sum()) // 20
 console.log(lee.avg()) // 10
 ```
 
-- **Object.create()** 사용
+- **`Object.create()` 사용**
 
 ```javascript
 let kim = {
@@ -629,7 +632,7 @@ let kim = {
     return this.first + this.second
   },
 }
-let lee = Object.create(kim)
+👉let lee = Object.create(kim)
 lee.name = 'lee'
 lee.first = 10
 lee.second = 10
@@ -669,8 +672,8 @@ function sum(str) {
 }
 console.log(sum('Kim : ')) // Kim : NaN
 console.log(sum.call('Kim : ')) // NaN
-👉console.log(sum.call(kim, 'Kim : ')) // Kim : 30
-👉console.log(sum.call(lee, 'Lee : ')) // Lee : 20
+console.log(👉sum.call(kim, 'Kim : ')) // Kim : 30
+console.log(👉sum.call(lee, 'Lee : ')) // Lee : 20
 ```
 
 [Top](#JS)
@@ -680,6 +683,7 @@ console.log(sum.call('Kim : ')) // NaN
 ## 14.3 bind
 
 - **this의 값을 영구적으로 바꾸는 새로운 함수를 만들어 낸다.**
+
   - 기존의 함수는 영향을 받지 않는다.
 
 ```javascript
@@ -701,7 +705,7 @@ console.log(kimSum()) // kimSum : 30
 
   - `function Person(){}` === `var Person = new Function();`
 
-![1](https://github.com/blackb0x0714/JS/blob/master/img/15-1.PNG)
+![1](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-1.PNG)
 
 - **Person 함수를 생성할 때**
 
@@ -714,35 +718,39 @@ console.log(kimSum()) // kimSum : 30
 
   - **`Person's prototype`객체가 생긴다.**
     - 내부적으로 `constructor`프로퍼티가 생성되고 `Person`객체를 가르킨다.
-
-![2](https://github.com/blackb0x0714/JS/blob/master/img/15-2.PNG)
+<br><br>
+![2](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-2.PNG)
 
 - **Person.prototype.sum = function(){}`이 생성될 때**
 
   - **`Person's prototype`객체 내부에 `sum`함수가 정의된다.**
 
-![3](https://github.com/blackb0x0714/JS/blob/master/img/15-3.PNG)
+<br><br>
+![3](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-3.PNG)
 
 - **생성자를 통해 객체를 만들 때-1**
   - `var kim = new Person('kim', 10, 20)
   - `kim`객체 안에 `__proto__`, `name`, `first`, `second` 프로퍼티가 생성된다.
   - `__proto__`는 자신을 생성한 `Person's prototype`객체를 가리킨다.
 
-![4](https://github.com/blackb0x0714/JS/blob/master/img/15-3.PNG)
+<br><br>
+![4](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-4.PNG)
 
 - **생성자를 통해 객체를 만들 때-2**
   - `var lee = new Person('kim', 10, 10)
   - `lee`객체 안에 `__proto__`, `name`, `first`, `second` 프로퍼티가 생성된다.
   - `__proto__`는 자신을 생성한 `Person's prototype`객체를 가리킨다.
 
-![5](https://github.com/blackb0x0714/JS/blob/master/img/15-5.PNG)
+<br><br>
+![5](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-5.PNG)
 
 - **출력할 때**
   - `console.log(kim.name)`
   - `kim` 객체에서 `name` 프로퍼티를 찾는다.
   - 만약에 없다면 `__proto`가 가리키고 있는 `Person's prototype`에서 `name`을 찾는다.
 
-![6](https://github.com/blackb0x0714/JS/blob/master/img/15-6.PNG)
+<br><br>
+![6](https://github.com/blackb0x0714/JS/blob/master/img/OOP-15-6.PNG)
 
 - **함수를 호출할 때**
   - `kim.sum()`
@@ -756,7 +764,7 @@ console.log(kimSum()) // kimSum : 30
 ## 16.1 생성자 함수를 통한 상속 : 소개
 
 - **목표**
-  - prototype 통한 상속
+  - prototype 통한 상속(`__proto__`, `Object.create()`)
   - 그러나 class를 통한 상속이 더 편하다.
 
 [Top](#JS)
@@ -799,7 +807,7 @@ console.log(kim.avg())
 
 ## 16.3 생성자 함수를 통한 상속 : 부모와 연결하기
 
-![1](https://github.com/blackb0x0714/JS/blob/master/img/16.3.PNG)
+![1](https://github.com/blackb0x0714/JS/blob/master/img/OOP-16.3.PNG)
 
 - **현재 상황**
 
@@ -807,9 +815,9 @@ console.log(kim.avg())
   - 객체가 생성될때는 항상 `__proto__`가 생성이 되며 그 객체의 prototype을 가르킨다.
 
 - **2가지 방법**
-- prototype을 이용한 연결 : `__proto__`
+- **prototype을 이용한 연결방법 2가지**
   - `__proto__`는 비표준이다.
-- `Object.create`를 이용한 연결 : 다음 강의에서 다룬다
+  - `Object.create()`를 이용한 연결 : 다음 강의에서 다룬다
 
 ```javascript
 function Person(name, first, second) {
@@ -842,7 +850,7 @@ console.log(kim.avg()) // 20
 
 ## 16.4 생성자 함수를 통한 상속 : constructor 속성은 무엇인가?
 
-![1](https://github.com/blackb0x0714/JS/blob/master/img/16.4.PNG)
+![1](https://github.com/blackb0x0714/JS/blob/master/img/OOP-16.4.PNG)
 
 - **constructor의 기능**
 
@@ -972,11 +980,399 @@ console.log(kim.constructor) // 👉/* ƒ PersonPlus(name, first, second, third)
 
 ---
 
-## 3..0 변수 할당 방식 비교
+## 3.0. 변수 할당 방식 비교
 
 - **목표**
 
   - 값(value)을 불변하게
+
+[Top](#JS)
+
+---
+
+## 3.0. 변수 할당 방식 비교
+- **목표**
+  - 값(value)을 불변하게
+
+- **`원시데이터 타입`과 `객체 타입`에 따라 동작 방법이 달라진다.**
+
+- **원시데이터 타입(Primitive)**
+  - 더 이상 쪼갤 수 없는 최소한의 정보들
+  - `Number`, `String`, `Boolean`, `Null`, `Undefined`, `Symbol`
+
+- **객체(Object)**
+  - 연관되어 있는 정보를 정리정돈 하는데 사용된다.
+  - `Object`, `Array`, `Function`
+
+[Top](#JS)
+
+---
+
+## 3.1. 초기 값의 비교
+![1](https://github.com/blackb0x0714/JS/blob/master/img/immutability-3.1.PNG)
+- **원시데이터 타입과 객체의 동작 비교**
+  - 원시데이터 타입은 불변
+  - 객체는 값이 변할 수가 있다.
+
+[Top](#JS)
+
+---
+
+## 3.2. 객체의 가변성
+![2](https://github.com/blackb0x0714/JS/blob/master/img/immutability-3.2.PNG)
+- **원시데이터 타입**
+  - `var p3 = p1`일 때, p3는 1을 가르키다가<br>`var p3 = 2`일 때, 2를 가르킨다.
+  
+- **객체**
+  - `var o3 = o1`일 때, o3는 `{name:'kim'}을 가리키다가<br>`o3.name='lee'`일 때, 값이 `{name:'lee'}`로 바뀐다.
+  - 문제점 : o1은 원래 `{name:'kim'}을 가리키고 있었는데, 값이 `{name:'lee'}`로 바뀌었다.
+
+[Top](#JS)
+
+---
+
+## 3.3. 객체의 복사
+![3](https://github.com/blackb0x0714/JS/blob/master/img/immutability-3.3.PNG)
+- **목표**
+  - 객체의 원본을 건드리지 않고 자신만의 데이터를 가리키고 싶다.
+  - 객체의 불변
+
+- **객체의 복사**
+  - `Object.assign({}, o1)`
+    - {} : 리턴이 될 객체
+    - o1이 가지고 있는 값을 복사
+
+[Top](#JS)
+
+---
+
+## 3.4. 중첩된 객체의 복사
+- **문제점**
+  - 객체를 복제할 때 프로퍼티의 값이 객체인 경우 그 값을 복제하는게 아니라 그 주소를 복제한다.
+![4-1](https://github.com/blackb0x0714/JS/blob/master/img/immutability-3.4.1.PNG)
+
+- **해결**
+  - `concat()` 사용한다.
+![4-2](https://github.com/blackb0x0714/JS/blob/master/img/immutability-3.4.2.PNG)
+
+[Top](#JS)
+
+---
+
+## 4. 불변의 함수 만들기
+- **목표**
+
+  - 아래의 코드의 함수가 변하지 않게 만들기
+  - `function fn(person){person.name = 'lee'}` == `var person =o1` `person.name = 'lee'`
+
+```javascript
+function fn(person) {
+  person.name = 'lee'
+}
+👉var o1 = { name: 'kim' } // 원본
+fn(o1)
+console.log(o1) // 👉{ name: 'lee' } // 바뀌어버림
+```
+- **방법-1**
+
+  - 원본 `person`을 복제해서 그 복제본 `person`을 리턴
+```javascript
+function fn(person) {
+  👉person = Object.assign({}, person)
+  person.name = 'lee'
+  👉return person
+}
+var o1 = { name: 'kim' }
+var o2 = fn(o1)
+console.log(o1, o2) // { name: 'kim' } { name: 'lee' }
+```
+- **방법-2**
+
+  - `o2`에 복제본을 생성
+```javasscript
+function fn(person) {
+  person.name = 'lee'
+}
+var o1 = { name: 'kim' }
+👉var o2 = Object.assign({}, o1)
+👉fn(o2)
+console.log(o1, o2) //  { name: 'kim' } { name: 'lee' }
+```
+
+[Top](#JS)
+
+---
+
+## 5. 가변과 불변 API 비교
+- **원본의 가변과 불변**
+
+- **가변**
+
+  - 복제과정이 없기 때문에 성능이 빠르다.
+```javascript
+let score = [1, 2, 3]
+👉score.push(4)
+console.log(score) // [ 1, 2, 3, 4 ]
+```
+- **불변**
+
+  - 복제과정 때문에 성능이 느리다.
+```javascript
+let score = [1, 2, 3]
+let score2 = 👉score.concat(4)
+console.log(score, score2) // [ 1, 2, 3 ] [ 1, 2, 3, 4 ]
+```
+
+[Top](#JS)
+
+---
+
+## 6. Object freeze로 객체를 불변하게 만들기
+- **`Object.freeze`**
+
+  - 객체 자체를 변경하지 못하게 만든다.
+  - 그 객체를 사용하고 싶으면 복제해서 사용해야 한다.
+  - 프로퍼티의 객체를 규제할 순 없다.
+  - 프로퍼티의 객체도 얼려버리면 된다.
+```javascript
+let o1 = { name: 'kim', score: [1, 2] }
+👉Object.freeze(o1)
+👉Object.freeze(o1.score)
+o1.name = 'lee'
+o1.city = 'seoul'
+o1.score.push(3)
+console.log(o1) // Error
+```
+
+[Top](#JS)
+
+---
+
+## 7. const vs object freeze
+![7](https://github.com/blackb0x0714/JS/blob/master/img/immutability-7.PNG)
+- **차이점**
+
+  - `const`는 `이름`이 가리키는 값을 다른 것으로 바꾸지 못하게 한다.
+  - `Object.freeze`는 `값` 자체를 바꾸지 못하게 한다.
+```javascript
+// const : 이름을 규제
+👉const o1 = { name: 'kim' }
+Object.freeze(o1)
+const o2 = { name: 'lee' }
+o1 = o2
+console.log(o1) // 👉Error
+
+👉let o1 = { name: 'kim' }
+Object.freeze(o1)
+const o2 = { name: 'lee' }
+o1 = o2
+console.log(o1) // 👉{ name: 'lee' }
+
+// freeze : 값을 규제
+let o1 = { name: 'kim' }
+Object.freeze(o1)
+const o2 = { name: 'lee' }
+o1.name = 'park'
+console.log(o1) // 👉{ name: 'kim' }
+```
+
+## 8. 수업을 마치며
+- **살펴봐야  것**
+
+  - `functional programing` : pure function
+  - `Library` : immer, mori
+  - `React` : 이전 데이터와 현재 데이터를 비교해서 렌더링
+
+[Top](#JS)
+
+---
+
+# Ajax
+
+- [생활코딩 Ajax 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9-1PvblBehoGg7Pu1lg6q)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **웹페이지의 정보를 부분적으로 변경**
+
+[Top](#JS)
+
+---
+
+## 2. 수업의 목적
+- **고정되는 부분과 바뀔 수 있는 부분을 구분**
+
+[Top](#JS)
+
+---
+
+## 3. 실습환경
+- **서버통신**
+
+  - NodeJS Express 사용
+```node
+const express = require('express')
+const path = require('path')
+const app = express()
+app.use(express.static(path.join(__dirname)))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'))
+})
+
+app.get('/1', (req, res) => {
+  res.sendFile(path.join(__dirname, '1.html'))
+})
+
+app.get('/2', (req, res) => {
+  res.sendFile(path.join(__dirname, '2.html'))
+})
+
+app.get('/3', (req, res) => {
+  res.sendFile(path.join(__dirname, '3.html'))
+})
+
+app.listen(3000, () => {
+  console.log('Express App on port 3000!')
+})
+```
+
+[Top](#JS)
+
+---
+
+## 4. 동적으로 컨텐츠 변경하기
+- **목표**
+  - list의 Anchor 태그를 클릭했을 때 그에 맞는 본문을 보여주고 싶다.
+
+- **타게팅 방법**
+  - 부분적으로 바꾸고 싶은 부분에 태그 설정 `<article>`
+  - 이벤트 설정 `onclick`
+  - 태그를 찾은 후 `innerHTML = '내용'`
+
+- **문제**
+  - 모든 내용이 하나의 html에 문서 안에 있다.
+
+- **바뀔 부분의 html을 별도로 관리하고 싶다**
+
+```html
+// index.html 변경전
+<li><a href="1.html">HTML</a></li>
+  <h2>WEB</h2>The World Wide Web...
+
+// index.html 변경후
+<li>
+  <a 👉onclick="document.querySelector('article').innerHTML = '<h2>WEB</h2>The World Wide Web'">
+    HTML</a>
+</li>
+<ariticle>👉</ariticle>
+```
+
+[Top](#JS)
+
+---
+
+## 5.0. fetch API-사용법
+- **코드를 이해하자**
+  - `fetch`를 통해 `html`파일을 서버에게 요청한다.
+  - 서버 응답이 끝나면 데이터는 변수 `text`에 들어가 있다.
+  - 호출되도록 약속이 된 `document.querySelector('article').innerHTML = text`가 실행된다.
+  - `<article>` 태그 안에 `text`의 내용이 보여지게 된다.
+```html
+<article></article>
+    <input
+      type="button"
+      value="fetch"
+      onclick="
+        👉fetch('html').then(function(response){
+            response.text().then(function(text){document.querySelector('article').innerHTML = text})
+        })
+    "/>
+```
+
+[Top](#JS)
+
+---
+
+## 5.1. fetch API-요청과 응답
+- **코드를 나눠서 보자**
+  - `fetch('html')` : `client`가 `server`에게 `html`파일을 요청
+  - `.then(callbackme)` : `server`의 응답이 끝나면 `callackme` 함수가 실행된다.
+  - fetch API는 Asynchronous(비동기)로 작동되기 때문에 출력순서는 `>> 1 2 response end`이다.
+```html
+function callbackme(){
+  👉console.log('response end')
+}
+fetch('html').then(callbackme)
+👉console.log(1)
+👉console.log(2)
+```
+
+[Top](#JS)
+
+---
+
+## 5.2. fetch API-response 객체
+- **response(서버응답) 객체**
+```html
+function(response){
+  if(response.status == '404){
+    alert('Not found')
+  }
+}
+```
+
+[Top](#JS)
+
+---
+
+## 6.1. ajax의 적용
+```javascript
+
+<a onclick="
+  👉fetch('html')
+    .then(function(response){
+      response.text()
+    .then(function(text){
+      document.querySelector('article').innerHTML = text
+    })
+  })
+">HTML</a>
+
+```
+
+[Top](#JS)
+
+---
+
+## 6.2. 리팩토링 함수화
+- **중복 제거**
+```html
+<ol>
+  <li>
+    <a onclick="fetchPage('html')">HTML</a>
+  </li>
+  <li>
+    <a onclick="fetchPage('css')">CSS</a>
+  </li>
+  <li>
+    <a onclick="fetchPage('javasciprt')">JS</a>
+  </li>
+</ol>
+<article></article>
+<script>
+  function fetchPage(name) {
+    fetch(name).then(function (response) {
+      response.text().then(function (text) {
+        document.querySelector('article').innerHTML = text
+      })
+    })
+  }
+</script>
+```
 
 [Top](#JS)
 
@@ -1494,7 +1890,7 @@ class App extends Component {
   👉constructor(props) {
     super(props)
     this.state = {
-      👉mode: 'welcome',
+      👉mode: 'mode',
       👉welcome: { title: 'Welcome', desc: 'Hello, React!!' },
       contents: [
         { id: 1, title: 'HTML', desc: 'HTML is for information' },
@@ -1656,12 +2052,11 @@ class App extends Component {
 ## 16.4 이벤트 bind 함수 이해하기
 
 - **문제**
-
   - render 함수안의 this는 render 함수가 속해있는 컴포넌트를 가르킨다.
   - 함수 안의 this는 아무것도 가리키고 있지 않다 = undefined
 
 - **그래서**
-- this의 값을 강제로 주입하고 싶다.
+  - this의 값을 강제로 주입하고 싶다.
 
 - **목표**
   - bindTest 함수의 this가 obj 객체를 가리키게 하고 싶다.
@@ -1691,7 +2086,7 @@ constructor(props) {
    }
 ```
 
-- **컴포넌트 생성이 끝난 후 동적으로 state값을 변경하고 싶을 때는<br>`this.state.mode = 'welcome' 이 아닌 'this.setState({mode: 'welcome'})로 변경해야 한다.**
+- **컴포넌트 생성이 끝난 후 동적으로 state값을 변경하고 싶을 때는<br>`this.state.mode = 'welcome` 이 아닌 `this.setState({mode: 'welcome'})`로 변경해야 한다.**
 
 - **이유**
   - 리액트가 state 값의 변화를 인지못하여 렌더링을 하지 못한다.
@@ -1738,6 +2133,7 @@ class App extends Component {
 ```
 
 ```javascript
+// Subject.js
 class Subject extends Component {
   render() {
     return (
@@ -1765,8 +2161,172 @@ class Subject extends Component {
 ---
 
 ## 17.2 컴포넌트 이벤트 만들기
+- **목표**
 
-코드리뷰
+  - `<TOC>`의 anchor 태그를 클릭했을 때 `mode`를 `read`로 바꿔주기
+  
+```javascript
+// App.js
+return (
+      <div className="App">
+        <TOC
+          👉onChangePage={function () {
+            this.setState({
+              mode: 'read',
+            })
+          }.bind(this)}
+          data={this.state.contents}
+        ></TOC>
+      </div>
+    )
+```
+
+```javascript
+// TOC.js
+lists.push(
+        <li key={data[i].id}>
+          <a
+            href={'/content/' + data[i].id}
+            👉onClick={function (e) {
+              e.preventDefault()
+              this.props.onChangePage()
+            }.bind(this)}
+          >
+            {data[i].title}
+          </a>
+        </li>
+      )
+```
+
+[Top](#JS)
+
+---
+
+## 17.3.
+- **목표**
+  - `List`를 클릭하면 본문이 보일 수 있게
+  - `State`의 `selected_id`에 맞는 내용을 표시
+
+- **이벤트 함수는 `target`속성을 가지는데 그 이벤트가 발생한 태그를 가리킨다.**
+  - ex) `<a onClick={function(){}}></a>
+  - 디버깅을 통해 개발자 도구에서 확인 가능
+
+- **`data-id={data[i].id}`의 값은 `id: "2"`이고, 개발자도구 `Sources`의 `dataset`에서 볼 수 있다.**
+
+- **정리**
+
+- **공통코드 App.js**
+```javascript
+constructor(props) {
+    super(props)
+    this.state = {
+      mode: 'read',
+      👉selected_content_id: 2,
+      subject: { title: 'WEB', sub: 'World Wide Web!' },
+      welcome: { title: 'Welcome', desc: 'Hello, React!!' },
+      contents: [
+        { id: 1, title: 'HTML', desc: 'HTML is for information' },
+        { id: 2, title: 'CSS', desc: 'CSS is for design' },
+        { id: 3, title: 'JavaScript', desc: 'JavaScript is for interactive' },
+      ],
+    }
+  }
+  render() {
+    console.log('App render')
+    var _title,
+      _desc = null
+    if (this.state.mode === 'welcome') {
+      _title = this.state.welcome.title
+      _desc = this.state.welcome.desc
+    } else if (this.state.mode === 'read') {
+      👉var i = 0
+      while (i < this.state.contents.length) {
+        var data = this.state.contents[i]
+        if (data.id === this.state.selected_content_id) {
+          _title = data.title
+          _desc = data.desc
+          break
+        }
+        i = i + 1
+      }
+    }
+    return (
+      <div className="App">
+        <Subject
+          title={this.state.subject.title}
+          sub={this.state.subject.sub}
+          onChangePage={function () {
+            this.setState({ mode: 'welcome' })
+          }.bind(this)}
+        ></Subject>
+        <TOC
+          👉onChangePage={function (id) {
+            this.setState({
+              mode: 'read',
+              👉selected_content_id: Number(id),
+            })
+          }.bind(this)}
+          data={this.state.contents}
+        ></TOC>
+        <Content title={_title} desc={_desc}></Content>
+      </div>
+    )
+  }
+}
+```
+
+- **1. 속성을 이용하는 방법(현재사용코드)**
+
+  - TOP.js의 onClick의 속성을 이벤트를 실행시킬 때<br>
+  `e.target.dataset.id`을 통해서 값을 추출했기 때문에<br>
+  `data-id` 값이 바뀌면 `e.target.dataset.id` 값도 바뀐다.<br>
+  ex) `data-AA` -> `e.target.dataset.AA`
+```javascript
+// TOC.js
+<li key={data[i].id}>
+  <a 
+    href={"/content/"+data[i].id}
+    👉data-id={data[i].id}
+    onClick={function(e){
+      e.preventDefault();
+      this.props.onChangePage();
+      👉this.props.onChangePage(e.target.dataset.id);
+    }.bind(this)}
+  >{data[i].title}</a>
+</li>);
+```
+
+- **2. 속성을 이용하지 않는 방법**
+
+  - `bind`의 두 번째 인자로 `data[i].id` 값을 주면<br>
+  `bind`는 `onClick` 함수의 두번째 인자로 들어온 인자를<br>
+  그 함수의 첫번째 매개변수의 값으로 넣어준다.<br>
+  기존에 있던 값은 뒤로 밀린다. ex) `function(-, e){}
+```javascript
+<li key={data[i].id}>
+  <a
+    href={'/content/' + data[i].id}
+    onClick={function (👉e) {
+      e.preventDefault()
+      this.props.onChangePage(👉id)
+    }.bind(👉this)}
+  >{data[i].title}
+  </a>
+</li>
+```
+
+[Top](#JS)
+
+---
+
+## 18. 베이스 캠프
+- **개념정리**
+  - props are **read-only**
+    - 컴포넌트 안에서 props  변경할 수 없다.
+  - props **can not be modified**
+  - state changes **can be asynchronous**
+  - state **can be modified** using `this.setState`
+  - 상위 컴포넌트가 하위 컴포넌트로 값을 전달 할 때는 `props`, 그 반대는 `이벤트`를 사용
 
 [Top](#JS)
 
