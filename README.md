@@ -12,6 +12,7 @@
 - [DATABASE1](#DATABASE1)
 - [DATABASE2 - MySQL](#MySQL)
 - [AWS1](#AWS1)
+- [Git1](#Git1)
 - [궁금했던 것들](#Question-Mark)
 
 ---
@@ -3083,6 +3084,74 @@ export default App;
 - [AWS 프리 티어](https://aws.amazon.com/ko/free)
 
   - 1년동안 무료로 사용
+
+[Top](#JS)
+
+---
+
+
+
+# Git1
+- [생활코딩 Git1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCNJESahrVV-uYGMNYK_vMf)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **소스코드 지옥**
+
+[Top](#JS)
+
+---
+
+## 2. git을 구경합시다!
+- **Git의 3대 목적**
+
+  - `version`
+  - `backup`
+  - `collaborate`
+
+[Top](#JS)
+
+---
+
+## 3. git의 목적 1 - 버전관리
+- **변화가 될 때마다 설명**
+
+[Top](#JS)
+
+---
+
+## 4. git의 목적 2 - 백업
+- **소중한 정보를 다룰때**
+
+[Top](#JS)
+
+---
+
+## 5. git의 목적 3 - 협업
+- **로컬 저장소, 원격 저장소**
+
+  - `push`, `pull`
+
+[Top](#JS)
+
+---
+
+## 6. git의 종류
+- **git**
+
+[Top](#JS)
+
+---
+
+## 7. 수업을 마치며
+- **이후 학습 순서**
+
+  - Version
+  - Backup
+  - Collaborate
 
 [Top](#JS)
 
