@@ -9,6 +9,9 @@
 - [REACT](#REACT)
 - [React class와 function style coding](#React-class-function-style-coding)
 - [NPM](#NPM)
+- [DATABASE1](#DATABASE1)
+- [DATABASE2 - MySQL](#MySQL)
+- [AWS1](#AWS1)
 - [궁금했던 것들](#Question-Mark)
 
 ---
@@ -2954,6 +2957,132 @@ export default App;
 
 - **삭제**
   - `npm uninstall -g 패키지명`
+
+[Top](#JS)
+
+---
+
+# DATABASE1
+- [생활코딩 DATABASE1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBe0848t2_ZUgFNJdanOA_I)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **대규모의 데이터를 관리**
+
+  - file -> database
+
+[Top](#JS)
+
+---
+
+## 2. 데이터베이스의 본질
+- **input**
+  - Create, Upate, Delete
+
+- ** output**
+  - Read
+
+[Top](#JS)
+
+---
+
+## 3. file vs database
+- **1억개의 파일을 읽거나 수정하고 싶을 때**
+
+  - `File` -> `Spreadsheet` -> `Database`
+  - 구조적으로 데이터를 저장할 때 효용성이 가장 큼
+
+[Top](#JS)
+
+---
+
+## 4. 수업을 마치며
+- **데이터베이스의 선택**
+
+  - 통계를 기반으로
+  - 관계형 데이터베이스를 먼저 배워보기
+  - Oracle은 비싸다 ㅠㅠ
+  - MySQL은 오픈 소스
+
+[Top](#JS)
+
+---
+
+# MySQL
+- [생활코딩 DATABASE2 - MySQL 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCgrP_9HL3dAcvdt8qOZxjW)
+
+[Top](#JS)
+
+---
+
+# AWS1
+
+- [생활코딩 AWS 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMDNWIEgnXjaZ3jgbIo5zQGi)
+
+[Top](#JS)
+
+---
+
+## 1. Amazon Web Services 수업소개
+- **Cloud Computing**
+  - 남의 컴퓨터를 빌려원격 제어를 통해서 사용하는 것
+
+- **Hosting**
+  - 컴퓨터를 빌려주는 임대사업
+
+- **EC2**
+  - Elastic Compute Cloud
+
+- **RDS**
+  - Relational Database Service
+    - MySQL, SQL Server, ORACLE
+
+[Top](#JS)
+
+---
+
+## 2. 수업의 목적
+ - **상상**
+
+  - 맥북을 사용하고 있지만 윈도우가 필요하다!
+
+[Top](#JS)
+
+---
+
+## 3. 나에게 필요한 서비스를 찾기
+- [AWS](https://aws.amazon.com/ko/)
+
+  - 제품 : 스토리지, 데이터베이스, 기계 학습, 사물 인터넷, AWS 비용 관리, 관리 도구
+  - 컴퓨팅 : Amazon EC2
+
+[Top](#JS)
+
+---
+
+## 4. 요금 따져보기
+- **온디맨드**
+  - 쓰는만큼 요금 지불
+  - 운영체제, 리전(Resion)
+
+- **예약 인스턴스**
+  - 할인쿠폰
+
+- **스팟 인스턴스**
+
+- **전용 호스팅**
+
+[Top](#JS)
+
+---
+
+##  5. 프리티어
+- [AWS 프리 티어](https://aws.amazon.com/ko/free)
+
+  - 1년동안 무료로 사용
 
 [Top](#JS)
 
