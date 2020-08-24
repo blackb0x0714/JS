@@ -3067,14 +3067,14 @@ export default App;
 - **bitnami wamp**
   - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
   - `Manage Servers` 탭에서 실행 혹은 중지
-  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p'
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`
 
 - **효용**
   - 보안, 권한 부여
 
 - **`-u` : User**
 
-- **`p` : Password**
+- **`-p` : Password**
 
 [Top](#JS)
 
