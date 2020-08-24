@@ -2752,17 +2752,60 @@ _ariticle = (
 
 ---
 
+## 20.1. update 구현
+- **`read` + `create`**
+- **`UpdateContent` 생성**
+- **`mode`, `title`  분리**
+
+```javascript
+
+```
+```javascript
+
+```
+
 [Top](#JS)
 
 ---
 
+## 20.2. form 구현
+- [리액트 공식문서](https://reactjs.org/docs/forms.html)
+
+input 값이 바뀌었을 때 state의 값이ㅣ 바뀌게
+
 [Top](#JS)
 
 ---
 
+## 20.3. update 구현 : state 변경
+- 업데이트의 식별자
+onSubmit
+mode를 read로
+
 [Top](#JS)
 
 ---
+
+## 21. delete 구현
+- window.confirm() 확인 true, 캔슬 false
+
+[Top](#JS)
+
+---
+
+## 22. 수업을 마치며
+- **공부할 것**
+  - immutable
+    - immutableJS
+  - router
+    - React Router(url)
+  - create-react-app
+    - npm run eject(더 많은 도구들)
+  - redux
+    - 컴포넌트를 한 곳에 모은다.
+  - react server side rendering
+    - 서버에서 웹페이지를 완성해서 클라이언트로 완성된 html을 전달
+  - react native
 
 [Top](#JS)
 
