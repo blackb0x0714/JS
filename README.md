@@ -3012,8 +3012,93 @@ export default App;
 
 ---
 
-# MySQL
+## MySQL
 - [생활코딩 DATABASE2 - MySQL 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCgrP_9HL3dAcvdt8qOZxjW)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **file의 한계**
+
+- **Relational Database**
+
+[Top](#JS)
+
+---
+
+## 2. 데이터베이스의 목적
+- **데이터를 표의 형태로 나타낸다.**
+
+- **컴퓨터 언어를 통해서 데이터베이스를 제어**
+
+[Top](#JS)
+
+---
+
+## 3. MySQL 설치
+- **mysql community edition download**
+  - [MySQL Community Downloads](https://www.mysql.com/products/community/) 
+
+- **bitnami wamp**
+  - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
+  - `Manage Servers` 탭에서 실행 혹은 중지
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p'
+
+[Top](#JS)
+
+---
+
+## 4. MySQL의 구조
+- **구성요소**
+
+  - 표 (table)
+  - 데이터베이스 (database, schema) : 일종의 폴더로 표들을 그룹핑한 것
+  - 데이터베이스 서버 (database server) : 데이터베이스, 스키마를 그룹핑한 것
+
+[Top](#JS)
+
+---
+
+## 5. 서버접속
+- **데이터베이스 서버로 접속**
+
+- **bitnami wamp**
+  - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
+  - `Manage Servers` 탭에서 실행 혹은 중지
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p'
+
+- **효용**
+  - 보안, 권한 부여
+
+- **`-u` : User**
+
+- **`p` : Password**
+
+[Top](#JS)
+
+---
+
+## 6. 스키마의 사용
+- **데이터베이스 사용**
+
+- **검색**
+  - `mysql create database`
+  - `mysql delete database`
+  - `how to show database list in mysql`
+
+- **생성**
+  - `CREATE DATABASE 스키마이름;`
+
+- **삭제**
+  - `DROP DATABASE 스키마이름;`
+
+- **확인**
+  - `SHOW DATABASES;`
+
+- **사용**
+  - `USE 스키마이름;`
 
 [Top](#JS)
 
