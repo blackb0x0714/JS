@@ -3197,6 +3197,101 @@ function templateList(filelist){
 
 ---
 
+## 28.1. Nodejs에서 동기와 비동기 1
+- **목표**
+  - Node.js 실행순서를 파악하는 것
+
+- **asynchronous**
+  - 병렬적 처리
+
+[Top](#JS)
+
+---
+
+## 28.2. Nodejs에서 동기와 비동기 2
+- **차이**
+
+  - `readFileSync` : 동기 
+  - `readFile` : 비동기
+
+```node
+// result == B
+var fs = require('fs');
+ 
+console.log('A');
+var result = fs.readFileSync('syntax/sample.txt', 'utf8');
+console.log(result);
+console.log('C');
+// 출력 : A B C
+ 
+console.log('A');
+fs.readFile('syntax/sample.txt', 'utf8', function(err, result){
+    console.log(result);
+});
+console.log('C');
+// 출력 : A C B
+```
+
+[Top](#JS)
+
+---
+
+## 28.3. JavaScript-callback
+```node
+var a = function(){
+  console.log('A');
+}
+ 
+function slowfunc(callback){
+  callback();
+}
+ 
+slowfunc(a); // A
+```
+
+[Top](#JS)
+
+---
+
+## 29. Node.js의 패키지 매니저와 PM2
+- **NPM**
+
+  - `pm2` 설치 : `npm install pm2 -g`
+  - 실행 : `pm2 start app.js`
+
+[Top](#JS)
+
+---
+
+## 30. HTML-form
+- **목표**
+  - 컨텐츠를 사용자가 웹을 통해 생성하고 수정하고 삭제하는 방법
+
+- **post**
+  - 편지봉투에는 받는 주소만, 편지지에는 내용을 적는다.
+  - 편지지가 허용하는 만큼 데이터 전달 용량이 상대적으로 크다.
+  - 내용 노출도 안된다.
+
+- **get**
+  - 편지봉투 겉면 주소란에 모든 내용을 다 적었다.
+  - 노출이 되고, 편지봉투에 뭐 열심히 적을래도 공간 부족하니 용량 제한이 있다.
+
+```html
+<form action="http://localhost:3000/process_create" method="post">
+  <p><input type="text" name="title"></p>
+  <p>
+    <textarea name="description"></textarea>
+  </p>
+  <p>
+    <input type="submit">
+  </p>
+</form>
+```
+
+[Top](#JS)
+
+---
+
 # DATABASE1
 - [생활코딩 DATABASE1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBe0848t2_ZUgFNJdanOA_I)
 
