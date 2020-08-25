@@ -3067,7 +3067,7 @@ export default App;
 - **bitnami wamp**
   - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
   - `Manage Servers` 탭에서 실행 혹은 중지
-  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`.
 
 - **효용**
   - 보안, 권한 부여
@@ -3099,6 +3099,60 @@ export default App;
 
 - **사용**
   - `USE 스키마이름;`
+
+[Top](#JS)
+
+---
+
+## 7. SQL과 테이블의 구조
+- **SQL*
+  - Structured Query Language
+  - `SQL`을 통해 `MySQL Server`와 대화
+
+- **table, 표**
+  - x축 : `row`, `record`, `행`
+  - y축 : `column`, `열`
+
+[Top](#JS)
+
+---
+
+## 8. 테이블의 생성
+- **테이블 생성**
+  - 검색 : `create table in mysql cheat sheet`
+
+- **`id column` 생성**
+  - 검색 : `mysql datatype number`
+  - `NOT NULL` : 값을 반드시 입력
+  - `AUTO_INCREMENT` : 자동으로 1씩 증가
+  - `PRIMARY KEY (id)` : 식별자로 사용하고 있기 때문에 중복방지
+
+- **`title column` 생성**
+  - 검색 : `mysql datatype string`
+  - `VARCHAR` : 정한 글자수만 입력
+
+- **`description column` 생성**
+  - 검색 : `mysql datatype string`
+  - `TEXT` : 65,535자 까지 가능
+
+- **`created column` 생성**
+  - 검색 : `mysql datatype date/time`
+
+- `ERROR 1820 (HY000): You must reset your password using ALTER USER statement before excuting this statement.`
+  - 기본 세팅된 비밀번호를 바꿔야 한다.
+  - `SET PASSWORD = PASSWORD(`'새로운 비밀번호');`
+
+```sql
+CREATE TABLE topic (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  description TEXT NULL,
+  created DATETIME NOT NULL,
+  author VARCHAR(30) NULL,
+  profile VARCHAR(100) NULL,
+  PRIMARY KEY (id)
+);
+```
 
 [Top](#JS)
 
