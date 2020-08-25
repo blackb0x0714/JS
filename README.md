@@ -2982,6 +2982,221 @@ app.listen(3000);
 
 ---
 
+## 10. URL을 통해서 입력된 값 사용하기
+- **목표**
+  - `Query String` 에 따라 다른 정보를 보여준다.
+
+- **`url` 값을 추출해 원하는 값을 얻어낼 수 있다.**
+  - `localhost:3000/?id=HTML` : `id=HTML`의 `HTML` 값을 알아내고 싶다.
+  - 검색 : `nodejs url parse query string`
+  - `queryData` = `{ id : HTML }`
+  - `queryData.id` = `HTML`
+
+```node
+var url = require('url');
+var _url = request.url;
+    var queryData = url.parse(_url, true).query;
+ response.end(queryData.id);
+```
+
+[Top](#JS)
+
+---
+
+## 11. App 제작-동적인 웹페이지 만들기
+- **타이틀을 정적으로 바꾸기**
+  
+  - 본문의 `${title}`
+  - `root`로 접속시 제목 `Welcome`
+
+```node
+ var title = queryData.id;
+if(_url == '/'){
+      title = 'Welcome';
+var template =`
+ <title>WEB1 - ${title}</title>
+response.end(template)
+```
+
+[Top](#JS)
+
+---
+
+## 12 .Node.js의 파일 읽기 기능
+- **CRUD**
+  - `Create`, `Read`, `Update`, `Delete`
+
+- **READ**
+  - 검색 : `nodejs file read`
+
+```node
+// nodejs/readfile.js
+
+var fs = require('fs');
+fs.readFile('sample.txt', 'utf8', function(err, data){
+  console.log(data);
+});
+```
+
+[Top](#JS)
+
+---
+
+## 13. App 제작- 파일을 이용해 본문 구현
+- **목표**
+  - `Query string` 에 따라서 `본문`이 변경되는 App
+
+- **본문에 넣을 폴더 생성**
+
+- **`fs`를 이용해 폴더안의 파일을 읽는다**
+
+```node
+fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+  var template =`
+    <title>WEB1 - ${title}</title>
+    <p>${description}</p>
+  response.end(template)
+}
+```
+
+[Top](#JS)
+
+---
+
+## 18. NodeJS - 콘솔에서의 입력값
+- **INPUT**
+  - `Parameter`, `Argument`
+  - 검색 : `nodejs console input parameters`
+
+- **OUTPUT**
+
+- **배열의 3번째(인덱스2) 부터 값이 들어간다**
+
+```node
+// conditional.js
+var args = process.argv;
+if(args[2] === '1'){
+  console.log('C1');
+} else {
+  console.log('C2');
+}
+console.log('D');
+
+// 출력 : node conditional.js 1 -> C1 D
+// 출력 : node conditional.js 2 -> C2 D
+```
+
+[Top](#JS)
+
+---
+
+## 19.1. App 제작-Not found 구현
+- **목표**
+  - 존재하지 않는 정보에 대한 요청이 들어왔을 때 Not found 오류 메시지를 전송하는 방법
+
+- **`url.parse(_url, true)`**
+  - `url` 에 대한 정보가 객체로 담겨있다.
+  - `pathname` : `/`
+  - `path` : `/?id=CSS` : `Query string` 을 포함한 정보
+
+```node
+var pathname = url.parse(_url, true).pathname;
+
+if(pathname === '/'){
+
+} else {
+      response.writeHead(404);
+      response.end('Not found'); 
+```
+
+[Top](#JS)
+
+---
+
+## 19.2. App 제작-홈페이지 구현
+- **목표**
+  - 조건문을 활용해서 홈페이지를 표현하는 방법
+
+- **`queryData.id === undefined`**
+  - `root` 경로
+
+```node
+if(queryData.id === undefined){
+  // root 경로일 때 정보를 보여준다.  
+} else {
+  // url에 맞는 정보를 보여준다.
+}
+```
+
+[Top](#JS)
+
+---
+
+## 23. Node.js에서 파일목록 알아내기
+- **목표**
+  - 특정 디렉토리 하위에 있는 파일과 디렉토리의 목록을 알아내는 방법
+
+- **검색 : `nodejs file list in directory`**
+
+- **배열로 출력**
+
+```node
+var testFolder = './data';
+var fs = require('fs');
+ 
+fs.readdir(testFolder, function(error, filelist){
+  console.log(filelist);
+})
+```
+
+[Top](#JS)
+
+---
+
+## 24. App 제작 - 글목록 출력하기
+- **목표**
+  - data 디렉토리에 있는 파일들의 이름을 이용해서 글 목록을 생성하는 기능을 구현
+
+```node
+if(pathname === '/'){
+  if(queryData.id === undefined){
+    fs.readdir('./data', function(error, filelist){
+var list = '<ul>';
+      var i = 0;
+      while(i < filelist.length){
+        list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+        i = i + 1;
+      }
+      list = list+'</ul>';
+        ${list}
+  })
+} else {
+
+}
+```
+
+[Top](#JS)
+
+---
+
+## 26. App 제작-함수를 이용해서 정리 정돈하기
+- **목표**
+  - 함수를 이용해서 코드를 정리 정돈하는 모습을 경험
+
+```node
+function templateHTML(title, list, body){
+  // 중복내용
+}
+
+function templateList(filelist){
+  // 중복내용
+}
+```
+
+[Top](#JS)
+
+---
+
 # DATABASE1
 - [생활코딩 DATABASE1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBe0848t2_ZUgFNJdanOA_I)
 
