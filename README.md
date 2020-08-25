@@ -3044,7 +3044,7 @@ export default App;
 - **bitnami wamp**
   - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
   - `Manage Servers` 탭에서 실행 혹은 중지
-  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p'
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`.
 
 [Top](#JS)
 
@@ -3053,9 +3053,9 @@ export default App;
 ## 4. MySQL의 구조
 - **구성요소**
 
-  - 표 (table)
-  - 데이터베이스 (database, schema) : 일종의 폴더로 표들을 그룹핑한 것
-  - 데이터베이스 서버 (database server) : 데이터베이스, 스키마를 그룹핑한 것
+  - `표(table)`
+  - `데이터베이스(database, schema)` : 일종의 폴더로 표들을 그룹핑한 것
+  - `데이터베이스 서버(database server)` : 데이터베이스, 스키마를 그룹핑한 것
 
 [Top](#JS)
 
@@ -3067,7 +3067,7 @@ export default App;
 - **bitnami wamp**
   - `Apache`, `mySQL`, `PHP` 를 동시에 설치해주는 프로그램
   - `Manage Servers` 탭에서 실행 혹은 중지
-  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`.
+  - 실행 : 터미널에서 `C:\Bitnami\wampstack-7.4.9-0\mysql\bin` 로 이동 후 `mysql -uroot -p`
 
 - **효용**
   - 보안, 권한 부여
