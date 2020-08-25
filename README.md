@@ -3182,7 +3182,7 @@ CREATE TABLE topic (
 
   - `Create`
   - `Read`
-  - `Update
+  - `Update`
   - `Delete`
 
 [Top](#JS)
@@ -3194,11 +3194,11 @@ CREATE TABLE topic (
 
 - **`row` 생성
   - 검색 : `mysql create row`
-  - `INSERT INTO table_name (column1, ...) VALUES (value1...)`
+  - `INSERT INTO table_name (column1, ...) VALUES (value1...);`
   - `DESC 테이블명;` : 구조를 보여준다.
 
 - **실습**
-  - `INSERT INTO topic (title,description,created,author,profile) VALUES('MySQL','MySQL is ...',NOW(),'egoing','developer'); `
+  - `INSERT INTO topic (title,description,created,author,profile) VALUES('MySQL','MySQL is ...',NOW(),'egoing','developer');`
   - 검색 : `how to read row in mysql`
 
 [Top](#JS)
@@ -3207,15 +3207,15 @@ CREATE TABLE topic (
 
 ## 11. SELECT
 - **읽기**
-  - - 검색 : `mysql select syntax`
+  - 검색 : `mysql select syntax`
 
 - **`SELECT * FROM topic;`**
   - 모든 `column` 보기
   
 - **`SELECT '표시하고 싶은 column' FROM topic WHERE '조건';`**
-  - SELECT id, title,created,author FROM topic WHERE author='egoing' ORDER BY id DESC LIMIT 2;
+  - `SELECT id, title,created,author FROM topic WHERE author='egoing' ORDER BY id DESC LIMIT 2;`
   - `WHERE` : 조건에 맞는 행만을 출력
-  - `ORDER BY` 원하는 행의 오름차순,내림차순 정렬
+  - `ORDER BY` 원하는 행의 오름차순, 내림차순 정렬
   - `LIMIT` : 데이터를 가져오는 수
   
 [Top](#JS)
@@ -3226,9 +3226,9 @@ CREATE TABLE topic (
 - **수정**
   - 검색 : `sql update mysql`
 
-- **`UPDATE 'table이름' SET 'column이름 = '값'' WHERE '원하는 행'`**
+- **`UPDATE 'table이름' SET 'column이름 = '값'' WHERE '원하는 행';`**
   - `WHERE` 을 사용하지 않으면 모든 데이터가 바뀐다.
-  - UPDATE topic SET description='ORACLE is', title='Oracle' WHERE id=2;
+  - `UPDATE topic SET description='ORACLE is', title='Oracle' WHERE id=2;`
 
 [Top](#JS)
 
@@ -3238,7 +3238,7 @@ CREATE TABLE topic (
 - **삭제**
   - 검색 : `sql delete in mysql` 
 
-- **`DELETE FROM '테이블이름' WHERE '원하는 행'`**
+- **`DELETE FROM '테이블이름' WHERE '원하는 행';`**
   - `WHERE` 을 사용하지 않으면 모든 데이터가 삭제된다.
   - `DELETE FROM topic WHERE id =5;`
 
