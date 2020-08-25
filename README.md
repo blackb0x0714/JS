@@ -8,12 +8,12 @@
 - [Ajax](#Ajax)
 - [REACT](#REACT)
 - [React class와 function style coding](#React-class-function-style-coding)
-- [Node.js](#Node.js)
+- [Node.js](#Nodejs)
 - [DATABASE1](#DATABASE1)
 - [DATABASE2 - MySQL](#MySQL)
 - [AWS1](#AWS1)
 - [Git1](#Git1)
-- [POSIX]
+- [POSIX](#)
 - [NPM](#NPM)
 - [궁금했던 것들](#Question-Mark)
 
@@ -2887,7 +2887,7 @@ export default App;
 
 ---
 
-# Node.js
+# NodeJS
 - [생활코딩 Node.js 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9QQX5wqj6ThK7t2tsGxjm)
 - [생활코딩 Node.js 소스코드](https://github.com/web-n/Nodejs)
 
