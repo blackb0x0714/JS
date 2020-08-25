@@ -3,18 +3,26 @@
 # JS
 
 - [CSS](#CSS)
-- [JS-OOP](#OOP)
-- [JS-Immutability](#Immutability)
-- [Ajax](#Ajax)
-- [REACT](#REACT)
-- [React class와 function style coding](#React-class-function-style-coding)
+
+- JavaScript
+  - [JS-OOP](#OOP)
+  - [JS-Immutability](#Immutability)
+  - [Ajax](#Ajax)
+
+  - [REACT](#REACT)
+    - [React class와 function style coding](#React-class-function-style-coding)
+    
 - [Node.js](#Nodejs)
+
 - [DATABASE1](#DATABASE1)
-- [DATABASE2 - MySQL](#MySQL)
+  - [DATABASE2 - MySQL](#MySQL)
+
 - [AWS1](#AWS1)
+
 - [Git1](#Git1)
+
 - [POSIX](#)
-- [NPM](#NPM)
+  - [NPM1](#NPM)
 - [궁금했던 것들](#Question-Mark)
 
 ---
