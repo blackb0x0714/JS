@@ -3266,6 +3266,135 @@ CREATE TABLE topic (
 
 ---  
   
+## 16. 테이블 분리하기
+- **흐름을 이해해보자**
+
+  - `topic` 테이블 이름을 `topic_backup` 으로 변경
+  - `topic` 테이블의 `author_id` 가 `author` 테이블 참조
+
+```sql
+--
+-- Table structure for table `author`
+--
+ 
+ 
+CREATE TABLE `author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `profile` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+ 
+--
+-- Dumping data for table `author`
+--
+ 
+INSERT INTO `author` VALUES (1,'egoing','developer');
+INSERT INTO `author` VALUES (2,'duru','database administrator');
+INSERT INTO `author` VALUES (3,'taeho','data scientist, developer');
+ 
+--
+-- Table structure for table `topic`
+--
+ 
+CREATE TABLE `topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL,
+  `description` text,
+  `created` datetime NOT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+ 
+--
+-- Dumping data for table `topic`
+--
+ 
+INSERT INTO `topic` VALUES (1,'MySQL','MySQL is...','2018-01-01 12:10:11',1);
+INSERT INTO `topic` VALUES (2,'Oracle','Oracle is ...','2018-01-03 13:01:10',1);
+INSERT INTO `topic` VALUES (3,'SQL Server','SQL Server is ...','2018-01-20 11:01:10',2);
+INSERT INTO `topic` VALUES (4,'PostgreSQL','PostgreSQL is ...','2018-01-23 01:03:03',3);
+INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2018-01-30 12:31:03',1);
+```
+
+[Top](#JS)
+
+---
+
+## 17. JOIN
+- **`topic` 테이블의 `author_id` 값과 `author` 테이블의 `id` 값을 연결**
+
+- **`SELECT * FROM topic LEFT JOIN author ON topic.author_id=author.id;`**
+  - `topic` 테이블과 `join` 테이블을 합친다
+  - `ON` 조건 만족시키는 경우
+
+- **`SELECT id, title, description, created, name, profile FROM topic LEFT JOIN author ON topic.author_id = author.id;`**
+  - 오류
+
+- **`SELECT topic.id, title, description, created, name, profile FROM topic LEFT JOIN author ON topic.author_id = author.id;`**
+  - 정상 출력
+
+- **`SELECT topic.id AS topic_id, title, description, created, name, profile FROM topic LEFT JOIN author ON topic.author_id = author.id;`** 
+  - 열에 `id` 란 값이 2개 중복되므로 `id` 를 `topic.id` 로 열 구분을 해줘야 함
+  - `topic.id AS topic_id`에서 `AS` 를 이용해 이름 변경하여 출력 가능
+
+- **테이블을 분리한다는 것은, 모든 테이블이 식별자 값만 행에 포함하고 있다면<br>
+**`JOIN` 을 통해 얼마든지 관계를 맺을 수 있다.**
+
+[Top](#JS)
+
+---
+
+## 18. 인터넷과 데이터베이스
+- **`client` → `Internet` → `server`**
+
+- **`client` ← `Internet` ← `server`**
+
+- **`mysql` 은 `서버` 와 `클라이언트` 둘다 설치
+  - `mysql monitor(client)` 를 통해 명령어로 `server` 를 제어
+  - `database server` 를 직접 제어할 수 없다.
+
+[Top](#JS)
+
+---
+
+## 19. MySQL Client
+- **MySQL monitor**
+ 
+  - 어디서나 사용가능
+  - `CLI` 기반
+ 
+- **MySQL client**
+  - 검색 : `mysql client`
+
+[Top](#JS)
+
+---
+
+## 20. MySQL Workbench 
+
+- **Workbench GUI 환경**
+
+  - `SQL` 을 `MySQL 서버`에 전송함으로써 데이터베이스 서버를 제어
+  - `./mysql -uroot -p -hlocalhost`
+
+[Top](#JS)
+
+---
+
+## 21. 수업을 마치며 
+- **공부할 것들**
+
+  - `index` (색인) : 사용자들이 검색을 자주 하는 컬럼에 색인을 걸어둠
+  - `modeling` : 성능, 설계
+  - `backup` : 내 컴퓨터와 별도의 컴퓨터에 복제해서 보관 ex) `mysqldump`, `binary log`
+  - `cloud` : 내 컴퓨터가 아닌 큰 회사들의 인프라를 임대해서 원격 제어.<br>`backup`도 알아서 해준다.<br>ex) `AWS RDS`, `Google Cloud SQL for MySQL`, `AZURE Database for MySQL`
+  - `programming` : DB 서버 핸들링<br>ex) `python mysql api`, `php mysql api`, `java mysql api`
+
+[Top](#JS)
+
+---
+  
 # AWS1
 
 - [생활코딩 AWS 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMDNWIEgnXjaZ3jgbIo5zQGi)
