@@ -8,11 +8,13 @@
 - [Ajax](#Ajax)
 - [REACT](#REACT)
 - [React class와 function style coding](#React-class-function-style-coding)
-- [NPM](#NPM)
+- [Node.js](#Node.js)
 - [DATABASE1](#DATABASE1)
 - [DATABASE2 - MySQL](#MySQL)
 - [AWS1](#AWS1)
 - [Git1](#Git1)
+- [POSIX]
+- [NPM](#NPM)
 - [궁금했던 것들](#Question-Mark)
 
 ---
@@ -2885,79 +2887,96 @@ export default App;
 
 ---
 
-# NPM
-
-- [생활코딩 NPM1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCwEXgZ-dep4SJlGEuYip-6)
-
-[Top](#JS)
-
----
-
-## 1. 수업 소개
-
-- **NPM (Node Package Manager)**
-  - CLI를 기반으로 동작
-  - 앱스토어와 유사
-  - 다른 소프트웨어에 부품으로 사용
+# Node.js
+- [생활코딩 Node.js 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9QQX5wqj6ThK7t2tsGxjm)
+- [생활코딩 Node.js 소스코드](https://github.com/web-n/Nodejs)
 
 [Top](#JS)
 
 ---
 
-## 2. npm 설치
+## 1. 수업소개
+- **HTML의 생성을 Web Application에게 맡김**
 
-- **NodeJS를 설치하면 npm도 설치가 된다.**
-
-  - LTS : 안정적인 버전
-  - Current : 최신 버전
-
-- **설치확인**
-  - `node -v` , `npm -v`
+- **V8 엔진 기반** : 컴퓨터 자체를 제어
 
 [Top](#JS)
 
 ---
 
-## 3. 패키지 검색과 설치 그리고 실행
+## 2. 수업의 목적
+- **생산성**
+  - 1억개의 웹페이지를 한번에 수정
 
-- [npm 검색 사이트](https://www.npmjs.com)
-
-- **검색**
-
-  - 원하는 패키지 검색 ex) web server
-  - 인기도 확인 (p)
-  - CLI이 지원하는지 찾기(Ctrl+F)를 통해 확인
-
-- **설치**
-
-  - install 부분의 설치방법 확인
-  - 커맨드라인을 이용하여 설치
-
-- **실행**
-
-  - 커맨드라인에서 ex) `ws`
-
-- **종료**
-  - Ctrl+C
+- **사용자의 참여가 가능**
 
 [Top](#JS)
 
 ---
 
-## 4. 패키지의 목록 보기와 업데이트 그리고 삭제
+## 3. 설치
+- **구조**
+  - `WEB Browser`, `HTML`, `WEB Application`
 
-- **패키지 목록 보기**
+  - `Node.js runtime`, JavaScript`, Node.js Application`
 
-  - `npm`
-  - `npm list`, `npm list -g`
-  - 직접 설치한 패키지만 보기 `npm list -g --depth=0`
+- **`Node.js runtime` 설치**
+  - [nodejs](https://nodejs.org/en/)
+  - 설치확인 : 터미널 `node -v`
 
-- **업데이트**
+[Top](#JS)
 
-  - `npm update -g 패키지명`
+---
 
-- **삭제**
-  - `npm uninstall -g 패키지명`
+## 4. 공부방법
+- **공부순서**
+  - `JavaScript` 문법
+  - `Node.js runtime` 기능
+  - `Node.js Application` 만들기
+
+[Top](#JS)
+
+---
+
+## 5. Node.js로 웹서버 만들기
+- **Web Server**
+  - Node.js는 서버가 내장
+  - 사용자에게 전송할 데이터를 생성
+
+```node
+var http = require('http');
+var fs = require('fs');
+var app = http.createServer(function(request,response){
+    var url = request.url;
+    if(request.url == '/'){
+      url = '/index.html';
+    }
+    if(request.url == '/favicon.ico'){
+      response.writeHead(404);
+      response.end();
+      return;
+    }
+    response.writeHead(200);
+    response.end(fs.readFileSync(__dirname + url));
+ 
+});
+app.listen(3000);
+```
+
+[Top](#JS)
+
+---
+
+## 9. URL의 이해
+- **목표**
+  - 자바스크립트를 이용해서 node.js의 기능을 호출
+
+- **`http://opentutorials.org:3000/main?id=HTML&page=12`**
+  - `http` : `protocol` : 통신규칙 : 사용자가 서버에 통신할때 어떤 규칙을 이용할지
+  - `opentutorials.org` : `host(domain)` : 인터넷에 접속되있는 각각의 컴퓨터 : 특정한 인터넷에 연결되어 있는 컴퓨터를 가리키는 주소
+  - `3000` : `port` : 한 대의 컴퓨터 안에 여러 대의 서버 중에 3000번 포트와 연결
+  - `main` : `path` : 컴퓨터 안에 있는 파일의 경로
+  - `id=HTML&page=12` : `query string` : 웹서버에게 데이터를 전달 가능 : `?`로 시작, 값과 값은 `&`, 값의 이름과 값은 `=`로 구분
 
 [Top](#JS)
 
@@ -3380,6 +3399,84 @@ CREATE TABLE topic (
 ---
 
 # Question Mark
+
+[Top](#JS)
+
+---
+
+# NPM
+
+- [생활코딩 NPM1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCwEXgZ-dep4SJlGEuYip-6)
+
+[Top](#JS)
+
+---
+
+## 1. 수업 소개
+
+- **NPM (Node Package Manager)**
+  - CLI를 기반으로 동작
+  - 앱스토어와 유사
+  - 다른 소프트웨어에 부품으로 사용
+
+[Top](#JS)
+
+---
+
+## 2. npm 설치
+
+- **NodeJS를 설치하면 npm도 설치가 된다.**
+
+  - LTS : 안정적인 버전
+  - Current : 최신 버전
+
+- **설치확인**
+  - `node -v` , `npm -v`
+
+[Top](#JS)
+
+---
+
+## 3. 패키지 검색과 설치 그리고 실행
+
+- [npm 검색 사이트](https://www.npmjs.com)
+
+- **검색**
+
+  - 원하는 패키지 검색 ex) web server
+  - 인기도 확인 (p)
+  - CLI이 지원하는지 찾기(Ctrl+F)를 통해 확인
+
+- **설치**
+
+  - install 부분의 설치방법 확인
+  - 커맨드라인을 이용하여 설치
+
+- **실행**
+
+  - 커맨드라인에서 ex) `ws`
+
+- **종료**
+  - Ctrl+C
+
+[Top](#JS)
+
+---
+
+## 4. 패키지의 목록 보기와 업데이트 그리고 삭제
+
+- **패키지 목록 보기**
+
+  - `npm`
+  - `npm list`, `npm list -g`
+  - 직접 설치한 패키지만 보기 `npm list -g --depth=0`
+
+- **업데이트**
+
+  - `npm update -g 패키지명`
+
+- **삭제**
+  - `npm uninstall -g 패키지명`
 
 [Top](#JS)
 
