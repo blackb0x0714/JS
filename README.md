@@ -27,7 +27,7 @@
 - [궁금했던 것들](#Question-Mark)
 
 ---
-
+# ⭐
 # CSS
 
 - [생활코딩 CSS 수업](https://www.youtube.com/watch?v=ONcmkf07EuI&list=PLuHgQVnccGMDaVaBmkX0qfB45R_bYrV62)
@@ -45,7 +45,7 @@
 [Top](#JS)
 
 ---
-
+# ⭐
 # OOP
 
 - [생활코딩 OOP 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMAMctarDlPyv6upFUUnpSO3)
@@ -979,7 +979,7 @@ console.log(kim.constructor) // 👉/* ƒ PersonPlus(name, first, second, third)
 [Top](#JS)
 
 ---
-
+# ⭐
 # Immutability
 
 - [생활코딩 Immutability 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBxNK38TqfBWk-QpEI7UkY8)
@@ -1221,7 +1221,7 @@ console.log(o1) // 👉{ name: 'kim' }
 [Top](#JS)
 
 ---
-
+# ⭐
 # Ajax
 
 - [생활코딩 Ajax 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9-1PvblBehoGg7Pu1lg6q)
@@ -1565,7 +1565,7 @@ function(response){
 [Top](#JS)
 
 ---
-
+# ⭐
 # REACT
 
 - [생활코딩 리액트 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCRv6f8H9K5Xwsdyg4sFSdi)
@@ -2825,7 +2825,7 @@ mode를 read로
 [Top](#JS)
 
 ---
-
+# ⭐
 # React class function style coding
 
 - [생활코딩 React class & function style coding 수업](https://www.youtube.com/watch?v=iY_vmP-Q3Ak&list=PLuHgQVnccGMCEfBwnNGsJCQDiqSWI-edj)
@@ -3583,7 +3583,7 @@ app.listen(3000, function() {
 [Top](#JS)
 
 ---
-
+# ⭐
 # DATABASE1
 - [생활코딩 DATABASE1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBe0848t2_ZUgFNJdanOA_I)
 
@@ -3632,7 +3632,7 @@ app.listen(3000, function() {
 [Top](#JS)
 
 ---
-
+# ⭐
 ## MySQL
 - [생활코딩 DATABASE2 - MySQL 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCgrP_9HL3dAcvdt8qOZxjW)
 
@@ -3996,7 +3996,7 @@ INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2018-01-30 12:31:03',1
 [Top](#JS)
 
 ---
-  
+# ⭐
 # AWS1
 
 - [생활코딩 AWS 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMDNWIEgnXjaZ3jgbIo5zQGi)
@@ -4151,7 +4151,7 @@ INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2018-01-30 12:31:03',1
 [Top](#JS)
 
 ---
-
+# ⭐
 # Git1
 - [생활코딩 Git1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCNJESahrVV-uYGMNYK_vMf)
 
@@ -4217,13 +4217,7 @@ INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2018-01-30 12:31:03',1
 [Top](#JS)
 
 ---
-
-# Question Mark
-
-[Top](#JS)
-
----
-
+# ⭐
 # NPM
 
 - [생활코딩 NPM1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMCwEXgZ-dep4SJlGEuYip-6)
@@ -4301,7 +4295,12 @@ INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2018-01-30 12:31:03',1
 [Top](#JS)
 
 ---
+# ⭐
+# Question Mark
 
+[Top](#JS)
+
+---
 ## 라이브러리 vs 프레임워크
 
 - **생산자로서의 소비자**
