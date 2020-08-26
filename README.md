@@ -2895,7 +2895,7 @@ export default App;
 [Top](#JS)
 
 ---
-
+# ⭐
 # NodeJS
 - [생활코딩 Node.js 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9QQX5wqj6ThK7t2tsGxjm)
 - [생활코딩 Node.js 소스코드](https://github.com/web-n/Nodejs)
@@ -3300,7 +3300,176 @@ slowfunc(a); // A
 [Top](#JS)
 
 ---
-# 🌟
+
+## 31. App - 글생성 UI 만들기
+- **목표**
+  - 글 작성을 할 수 있는 UI를 구현해봅시다.
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/ead2c8f716588d3950d596a57934386dd398891a)
+
+[Top](#JS)
+
+---
+
+## 32. App - POST 방식으로 전송된 데이터 받기
+- **목표**
+  - POST 방식으로 전송된 데이터를 받아서 파일로 저장하는 방법에 대해서 알아보겠습니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/ab13376e1ebae972f8216626dc5981adfdab5ecb)
+
+[Top](#JS)
+
+---
+
+## 33. App - 파일생성과 리다이렉션
+- **목표**
+  - 전송된 POST 데이터를 받아서 파일에 저장하고, 그 결과 페이지로 리다이렉션하는 방법에 대해서 알아보겠습니다.
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/8996a047c3d07d01752be17751969ebd47e52ced)
+
+[Top](#JS)
+
+---
+
+## 34. App - 글수정 - 수정 링크 생성
+- **목표**
+  - 글 수정 기능을 구현하기 위해서 수정 링크를 추가하는 법을 살펴봅니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/70bd0cb49a37692dbb0a8488b95bcba8d7d9690f?diff=unified)
+
+[Top](#JS)
+
+---
+
+## 35. App - 글수정 - 수정할 정보 전송
+- **목표**
+  - 수정할 내용을 서버로 전송하는 법을 살펴봅니다.
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/5c62d421d9d0dd1fb958f7e6438b97e0cbf58d4f)
+
+[Top](#JS)
+
+---
+
+## 36. App - 글수정 - 수정된 내용 저장
+- **목표**
+  - 전송된 수정 내용을 받아서 파일명을 변경하고, 내용을 저장하는 방법을 알아봅니다.
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/ecbb65278ebe726463ab829a7e8ccaffa787e70f)
+
+[Top](#JS)
+
+---
+
+## 37. App - 글삭제 - 삭제버튼 구현 
+- **목표**
+  - 삭제 작업을 하기 위해서는 삭제 버튼이 있어야 합니다. 이 때 링크를 사용하는 안됩니다. 링크 대신 form을 이용해서 삭제 버튼을 만드는 방법을 살펴보겠습니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/a96085948f84fbf9d48941ad159e3fcb493e3286)
+
+[Top](#JS)
+
+---
+
+## 38. App - 글삭제 기능 완성 
+- **목표**
+  - 글삭제 기능을 완성해봅시다!
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/c6207ad04a9aafdb333b5d9e0d8f06699b53b23f)
+
+[Top](#JS)
+
+---
+
+## 39. App -객체를 이용해서 템플릿 기능 정리 정돈하기 
+- **목표**
+  - 객체를 이용해서 탬플릿 기능을 정리 정돈하는 법을 소개합니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/b62600c227c01b22e35916f485730d2eb29040bb)
+
+[Top](#JS)
+
+---
+
+## 40. Node.js - 모듈의 형식
+- **목표**
+  - 많아진 코드를 정리 정돈하는 가장 큰 도구인 모듈의 형식을 살펴보겠습니다. 
+
+```node
+// nodejs/mpart.js
+
+var M = {
+  v:'v',
+  f:function(){
+    console.log(this.v);
+  }
+}
+ 
+module.exports = M;
+```
+```node
+// muse.js
+
+var part = require('./mpart.js');
+part.f(); // v
+```
+
+[Top](#JS)
+
+---
+
+## 41. App 제작 - 모듈의 활용
+- **목표**
+  - 모듈을 활용해서 템플릿 기능을 모듈화 해보겠습니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/de4cb8b38062284c89d1ed5cb2dc8559accee303)
+
+[Top](#JS)
+
+---
+
+## 42. App - 입력 정보에 대한 보안
+- **목표**
+  - 입력정보와 관련해서 보안적으로 처리해야 할 이슈를 살펴보겠습니다. 
+
+- 검색 : `node path parse`
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/f3af5af5e404ffe33fe5e4a4f9ebb74b60f60829)
+
+[Top](#JS)
+
+---
+
+## 43. App - 출력정보에 대한 보안
+- **목표**
+  
+  - 출력정보에서 발생할 수 있는 보안적인 이슈를 살펴보겠습니다. 
+
+- [소스코드](https://github.com/web-n/Nodejs/commit/4c072c98d55527b4ffc804d524ddd11bbc57210a)
+
+[Top](#JS)
+
+---
+
+## 44. API
+- **목표**
+  
+  - API라는 중요한 개념의 의미를 알아보고, 지금까지 베일에 쌓여있었던 createServer API의 의미를 살펴보겠습니다. 
+
+[Top](#JS)
+
+---
+
+## 45. 수업을 마치며
+- **목표**
+  
+  - 공부해볼만한 주제
+
+[Top](#JS)
+
+---
+
+# ⭐
 # Express
 - [생활코딩 Express 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMAGOQu8CBDO9hn-FXFmm4Wp)
 - [생활코딩 Express 소스코드](https://github.com/web-n/express)
