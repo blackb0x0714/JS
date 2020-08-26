@@ -13,7 +13,7 @@
     - [React class와 function style coding](#React-class-function-style-coding)
     
 - [Node.js](#Nodejs)
-  -[Express](#Express)
+  - [Express](#Express)
 
 - [DATABASE1](#DATABASE1)
   - [DATABASE2 - MySQL](#MySQL)
@@ -3300,7 +3300,7 @@ slowfunc(a); // A
 [Top](#JS)
 
 ---
-🌟
+# 🌟
 # Express
 - [생활코딩 Express 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMAGOQu8CBDO9hn-FXFmm4Wp)
 - [생활코딩 Express 소스코드](https://github.com/web-n/express)
