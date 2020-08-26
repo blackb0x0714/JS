@@ -13,6 +13,7 @@
     - [React class와 function style coding](#React-class-function-style-coding)
     
 - [Node.js](#Nodejs)
+  -[Express](#Express)
 
 - [DATABASE1](#DATABASE1)
   - [DATABASE2 - MySQL](#MySQL)
@@ -3295,6 +3296,120 @@ slowfunc(a); // A
   </p>
 </form>
 ```
+
+[Top](#JS)
+
+---
+🌟
+# Express
+- [생활코딩 Express 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMAGOQu8CBDO9hn-FXFmm4Wp)
+- [생활코딩 Express 소스코드](https://github.com/web-n/express)
+
+[Top](#JS)
+
+---
+
+## 1. 수업소개
+- **Node.js 위에서 동작하는 Web Framework**
+  
+  - 반복되는 일을 자동화
+
+[Top](#JS)
+
+---
+
+## 2. 실습준비
+- [프로젝트 다운로드](https://github.com/web-n/Nodejs)
+
+[Top](#JS)
+
+---
+
+## 3. Hello Word
+- **목표**
+  - 가장 기본적인 골격 만들기
+
+- [Express 홈페이지](https://expressjs.com/)
+  - 설치 : `npm install express --save`
+  - [API reference](https://expressjs.com/en/4x/api.html)
+
+```node
+var express = require('express')
+var app = express()
+ 
+//route, routing
+//app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', function(req, res) { 
+  return res.send('/');
+});
+ 
+app.get('/page', function(req, res) { 
+  return res.send('/page');
+});
+ 
+app.listen(3000, function() {
+  console.log('Example app listening on port 3000!')
+});
+```
+
+[Top](#JS)
+
+---
+
+## 4. 홈페이지 구현
+- **목표**
+
+  - `Route` 기능을 중심으로 홈페이지 기능을 구현
+
+- [소스코드](https://github.com/web-n/express/commit/5094046499287f1fb6296518e615c05b3a51418c)
+
+## 5. 상세페이지구현
+- **목표**
+  - 상세보기 페이지를 `Express` 버전으로 변환<br>
+  이 과정에서 `query string`을 사용하지 않는<br>
+  `pretty url-path parameter(clean url, semantic url..)`로 라우트 기능을 구현하는 방법 
+
+- **`Clean URL` 로 `Route` 를 구현하는 방법을 소개
+  - [Routing-Route Parameters](https://expressjs.com/en/guide/routing.html)
+  - [소스코드](https://github.com/web-n/express/commit/30b0d4a8e328103a5c3c8273c8f079798e78ae0b)
+
+- **상세보기 페이지를 완성**
+  - [소스코드](https://github.com/web-n/express/commit/549db5253bfe4d3d1833aa515546abd9c431d724)
+
+[Top](#JS)
+
+---
+
+## 6. 페이지 생성 구현
+- **목표**
+
+  - 페이지 생성 기능을 Express 버전으로 전환하는 방법
+
+- [소스코드](https://github.com/web-n/express/commit/338464ede30730a8b7e8ea2a602f129a878c2cc3)
+
+[Top](#JS)
+
+---
+
+## 7. 페이지 수정 기능 구현
+- **목표**
+
+  - 페이지 수정 기능을 Express 버전으로 전환해봅시다.
+
+- [소스코드](https://github.com/web-n/express/commit/5e448076a46c7550bc2833cfb296e3541dc98a67)
+
+[Top](#JS)
+
+---
+
+## 8. 삭제 기능 구현 
+- **목표**
+  - 삭제 기능을 구현하는 방법을 살펴봅니다
+
+- **리다이렉트**
+  - 검색 : `nodejs express redirect`
+
+- [소스코드](https://github.com/web-n/express/commit/3680648c5b8de523a1056709b716a13f907174bd)
 
 [Top](#JS)
 
