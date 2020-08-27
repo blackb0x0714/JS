@@ -11,7 +11,12 @@
 
   - [REACT](#REACT)
     - [React class와 function style coding](#React-class-function-style-coding)
-    
+    - [React Router](#React-Router)
+    - [React Redux](#React-Redux)
+    - [React Ajax](React Ajax)
+
+- [Redux](#Redux)
+
 - [Node.js](#Nodejs)
   - [Express](#Express)
 
@@ -3009,6 +3014,39 @@ useEffect(function(){
   }
 }, [])
 ```
+- [skipping effect 소스코드](https://github.com/egoing/react-function-vs-class-style/commit/608a67dfc0259f3f8d6f8828e3417f6e52327513)
+
+[Top](#JS)
+
+---
+
+# React Router
+- [생활코딩 React Router 수업](https://www.youtube.com/watch?v=WLdbsl9UwDc&feature=youtu.be)
+- [생활코딩 React Router 소스코드](https://github.com/egoing/react-router-dom-example)
+
+[Top](#JS)
+
+---
+
+# React Redux
+- [생활코딩 React Redux 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMDuVdsGtH1_452MtRxALb_7)
+- [생활코딩 React Redux 소스코드](https://github.com/egoing/react-redux-tutorial-example)
+
+[Top](#JS)
+
+---
+
+# React Ajax
+- [생활코딩 React Ajax 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMDVTrQYa2HRj1OBbT-4HU_v)
+- [생활코딩 React Ajax 소스코드](https://github.com/egoing/react-ajax)
+
+[Top](#JS)
+
+---
+
+# Redux
+- [생활코딩 Redux 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMB-iGMgONoRPArZfjRuRNVc)
+- [생활코딩 Redux 소스코드](https://github.com/egoing/redux-tutorial-example)
 
 [Top](#JS)
 
@@ -3702,6 +3740,71 @@ app.listen(3000, function() {
 [Top](#JS)
 
 ---
+
+## 9. Express 미들웨어의 사용
+- **목표**
+  - 여기서는 미들웨어의 개념을 소개하고, 타인이 만든 미들웨어를 사용하는 방법을 알아봅니다.
+
+[Top](#JS)
+
+---
+
+## 10. Express 미들웨어 만들기
+- **목표**
+  - Express의 미들웨어를 만드는 방법을 살펴봅니다. 
+
+[Top](#JS)
+
+---
+
+## 11. Express 미들웨어의 실행순서
+- **목표**
+  - Express의 미들웨어가 실행되는 순서를 살펴보겠습니다. 
+
+[Top](#JS)
+
+---
+
+## 12. 정적인 파일의 서비스
+- **목표**
+  - 이미지, 자바스크립트, CSS와 같은 파일을 서비스하는 방법을 살펴보겠습니다. 
+
+[Top](#JS)
+
+---
+
+## 13. 에러처리 
+- **목표**
+  - 에러가 발생했을 때 처리하는 방법을 소개합니다. 
+
+[Top](#JS)
+
+---
+
+## 14. 라우터
+- **목표**
+  - 관리하는 페이지가 많아짐에 따라서 코드의 복잡도가 급격히 높아지게 됩니다. 복잡도를 낮추는 방법이 라우터입니다. 라우터를 알아봅시다.
+
+[Top](#JS)
+
+---
+
+## 15. 보안
+- **목표**
+  - Express 애플리케이션을 구현할 때 주의해야 할 보안적인 이슈를 살펴봅시다. 
+
+[Top](#JS)
+
+---
+
+## 16. express generator
+- **목표**
+  - Express 기반의 프로젝트를 할 때 기본적으로 필요한 파일과 코드를 자동으로 만들어주는 앱인 Express generator를 소개합니다. 
+
+[Top](#JS)
+
+---
+
 # ⭐
 # DATABASE1
 - [생활코딩 DATABASE1 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMBe0848t2_ZUgFNJdanOA_I)
