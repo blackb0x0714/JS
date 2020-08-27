@@ -13,7 +13,7 @@
     - [React class와 function style coding](#React-class-function-style-coding)
     - [React Router](#React-Router)
     - [React Redux](#React-Redux)
-    - [React Ajax](React Ajax)
+    - [React Ajax](#React-Ajax)
 
 - [Redux](#Redux)
 
