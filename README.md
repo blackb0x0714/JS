@@ -2895,6 +2895,125 @@ export default App;
 [Top](#JS)
 
 ---
+
+## 3.1 클래스에서 state 사용법
+- **목표**
+  - 클래스에서 내부 상태의 변화를 관리하기 위해서 사용하는 데이터 형태가 state입니다. state를 클래스에서 다루는 방법을 소개합니다. 
+
+- **`props`를 사용할 때**
+  - 컴포넌트에서
+  - 함수형 : 매개변수로 `props`를 받은 후 `props.~`
+  - 클래스형 : `this.props.변수`
+
+- **`state`를 사용할 때**
+  - 컴포넌트에서
+  - 함수형 : `state` 와 `라이프사이클` 을 사용할 수 없다.
+  - 클래스형 : `state = {number:this.proprs.~}` , `{this.state.~}`
+
+- [소스코드](https://github.com/egoing/react-function-vs-class-style/commit/9864edae07cbc9d57b8fd488132f32efa18a9192)
+
+[Top](#JS)
+
+---
+
+## 3.2. 함수에서 state사용법 (hook)
+- **목표**
+  - 리액트 16.8 버전에서는 hook이라는 기능이 추가 되었습니다. hook은 기존에 클래스 스타일 코딩에서만 가능했던 여러작업을 함수 스타일 코딩에서도 가능하게 해주는 기능입니다. 이 기능을 이용해서 함수 내에서 state를 사용하는 방법을 살펴봅시다. 
+
+- [리액트 훅](https://ko.reactjs.org/docs/hooks-intro.html)
+  - 내장된 훅(`use` 로 시작), 사용자가 만들어서 사용가능
+  - `import React, {useSate} from 'react';`
+  - `var numberState = useState();` : 2개의 배열이 리턴 된다.
+  - `numberState[0]` == `state` 값
+  - `numberState[1]` == `setState` 의 역할  
+  - `{props.init}` == `{number}`
+  - `initNumber` 를 사용할 때는<br>`useState()` 의 인자로 넣어서 사용<br>== `useState(props.initNumber)`
+
+- **중요**
+```javascript
+// var dateSate = useState((new Date()).toString())
+// var _date = dateState[0] // state
+// var setDate = dateSate[1] // setState
+
+var [_date, setDate] = useState((new Date()).toString())
+```  
+- [소스코드](https://github.com/egoing/react-function-vs-class-style/commit/a7da7b8230e49eff41e3b5c875846963e152e4de)
+
+[Top](#JS)
+
+---
+
+## 4.1. 클래스에서 라이프 사이클 이용하기
+- **목표**
+  - 콤포넌트의 생성과 변화 그리고 소멸에 따라서 해야 할 일을 구현할 수 있는 기능인 라이프 사이클 API를 클래스 방식으로 구현하는 방법을 소개합니다. 
+
+- **검색 : `react lifecycle`**
+  - `componentWillMount` -> `render` -> `componentDidMount` -> `(shouldComponentUpdate)`
+
+- 이미지 추가
+
+- [소스코드](https://github.com/egoing/react-function-vs-class-style/commit/c1095d94e1961ba9f4605ab7c8bc93b841d58517)
+
+[Top](#JS)
+
+---
+
+## 4.2. 함수에서 라이프 사이클 이용하기
+- **목표**
+  - hook 이전까지는 함수에서 라이프 사이클을 이용할 수 없었습니다. hook이 등장하면서 useEffect를 이용해서 라이프 사이클을 이용할 수 있는 방법이 생겼습니다. 이에 대한 수업입니다. 
+
+- **`componentDidMount`**
+  - 컴포넌트가 `등장` 할 때
+
+- **`componentWillunmount`**
+  - 컴포넌트가 `퇴장` 할 때
+
+- **`componentDidUpdate`**
+  - `state` 가 바뀔 때마다 실행
+
+- [실습준비 소스코드](https://github.com/egoing/react-function-vs-class-style/commit/46493d6731945f66ccc6c933cd80a4b3cd5bec49)
+
+- **`useEffect` == `componentDidMount & `componentDidUpdate``**
+  - `render` 후에 필요한 작업 == `render` 가 메인작업
+  - 첫번째 인자는 `함수`
+  - `render` 가 실행될 때마다 실행
+
+- [useEffect 소스코드](https://github.com/egoing/react-function-vs-class- style/commit/44ba328d83fd8ef325afb1d941a6a3bb70013f00)
+
+- **`useEffect의 return 값 == `componentWillUnmount`**
+  - `render` 생성 후 , `useEffect` 가 실행되기 전에 `clean up` 작업
+  - 컴포넌트가 사라질때 해야 되는 작업
+  
+- [clean up 소스코드](https://github.com/egoing/react-function-vs-class-style/commit/98ea5ca66e02b3bf7ecd94e4edb8ad012cd424c7)
+
+- **필요성**
+  - `componentDidUpdate` 를 할때, 변한 값만을 비교한다면 불필요한 처리를 줄일 수 있다.
+
+- **2번째 인자가 있을 경우**
+```javascript
+useEffect(function(){
+  // #2 실행
+  document.title = number
+  return function(){
+    // #1 실행 : clean up 하기 위해
+  }
+}, [number])
+```
+- **2번째 인자가 없을 경우**
+```javascript
+useEffect(function(){
+  // #1 실행 : 1회만 실행
+  document.title = number
+  return function(){
+    // #2 실행 : clean up 하기 위해
+  }
+}, [])
+```
+
+[Top](#JS)
+
+---
+
 # ⭐
 # NodeJS
 - [생활코딩 Node.js 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA9QQX5wqj6ThK7t2tsGxjm)
